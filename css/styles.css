@@ -94,7 +94,8 @@ form {margin:30px 0; padding:0}
 .pager a.active {border-color:#8cc63e; background:#8cc63e}
 .pager span {display:inline-block; vertical-align:top; width:38px; height:22px; margin:0 5px; border:1px solid #8cc63e; font:14px/26px P22UndergroundCYProBook, sans-serif; letter-spacing:0; text-align:center; text-decoration:none; color:#000; border-radius:2px}
 
-.articles {width:100%; position:relative; overflow:hidden}
+.articles {width:100%; position:relative; overflow:hidden; margin:35px 0}
+h2+.articles {margin-top:0}
 .articles-list {font-size:0; line-height:0; letter-spacing:-1px; margin:-15px -10px 0 -10px}
 .article {display:inline-block; vertical-align:top; width:33.33%; padding:0 10px; box-sizing:border-box; margin:20px 0 0 0}
 .article-content {background:#fff; padding:0 20px}
@@ -176,7 +177,7 @@ header {background:#fff}
 .side-menu > ul > li > ul > li.active > a {text-decoration:none; background:#8cc63e; z-index:2}
 
 .side+.content {margin:0 0 0 240px}
-.content-wrap {width:100%; float:left}
+.content-wrap {width:100%; float:left; padding:0 0 80px 0}
 .content-wrap h2:first-child {margin-top:44px}
 
 .top {background:#fff}
@@ -244,18 +245,23 @@ footer {background:#8cc63e}
 .main-news-item-date {font-size:12px; line-height:15px; letter-spacing:0; color:#8cc63e; padding:15px 0 0 0}
 
 .main-teasers {margin:0 -10px; padding:40px 0 0 0}
+.main-teasers-content {margin:0; padding:1px 0 0 0; background:#fff}
 .main-teasers:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
 .main-teaser {float:left; width:33.33%; padding:0 10px; box-sizing:border-box}
+.main-teasers-content .main-teaser {padding:0}
 .main-teaser-img {display:block; position:relative; width:100%; height:0; overflow:hidden; padding:100% 0 0 0; background-size:cover; background-repeat:no-repeat; background-position:center}
 .main-teaser-slider {position:relative; width:100%; height:0; overflow:hidden; padding:100% 0 0 0; background:#000}
+.main-teasers-content .main-teaser-slider {padding:300px 0 0 0}
 .main-teaser-slider ul {position:absolute; left:0; top:0; width:100%; height:100%; margin:0; padding:0; list-style:none}
 .main-teaser-slider ul li {position:absolute; left:0; top:0; width:100%; height:100%; margin:0; padding:0; background-size:cover; background-repeat:no-repeat; background-position:center}
 .main-teaser-slider ul li:first-child {z-index:2}
 .main-teaser-slider ul li:before {display:none}
 .main-teaser-type {text-transform:uppercase; font:20px/20px P22UndergroundCYProMedium, sans-serif; color:#fff; padding:34px 110px 0 30px}
 .main-teaser-name {text-transform:uppercase; font:20px/20px P22UndergroundCYProMedium, sans-serif; color:#fff; padding:47px 20px 0 30px}
+.main-teasers-content .main-teaser-name {font-size:30px; line-height:30px; padding-top:68px}
 .main-teaser-name a {color:#fff}
 .main-teaser-text {color:#fff; font-size:12px; padding:27px 20px 0 30px}
+.main-teasers-content .main-teaser-text {padding-top:7px}
 .main-teaser-slider-prev,
 .main-teaser-slider-next {position:absolute; z-index:3; top:22px; display:block; width:35px; height:35px; background:url(../images/main-teaser-slider-arrows.png)}
 .main-teaser-slider-prev {right:70px}
@@ -341,3 +347,24 @@ nav ul {margin:0; padding:0; list-style:none}
 nav ul li {margin:0; padding:13px 0 6px 0; border-bottom:1px solid #9dce5b}
 nav ul li:before {display:none}
 nav ul li a {color:#fff}
+
+.breadcrumbs {font:15px/20px P22UndergroundCYProBook, sans-serif; text-transform:uppercase; padding:42px 0 0 0}
+.breadcrumbs span {display:inline-block; vertical-align:middle; width:7px; height:11px; background:url(../images/breadcrumbs.png); margin:-4px 6px 0 6px}
+.breadcrumbs+h1 {margin:6px 0 21px 0}
+
+#map {height:640px}
+
+.map-mini {height:200px; position:relative; overflow:hidden; transition:all .5s ease}
+.map-mini.open {height:640px}
+.map-mini-open {display:block; position:absolute; left:50%; bottom:0; width:78px; height:20px; background:#fafafa; border-radius:3px 3px 0 0}
+.map-mini-open:after {content:""; display:block; width:11px; height:7px; background:url(../images/map-mini-open.png); position:absolute; left:50%; top:7px; margin:0 0 0 -6px}
+.map-mini.open .map-mini-open:after {background-position:left -7px}
+
+.gallery {line-height:0; margin:50px 0}
+.gallery-big img {width:100%}
+.gallery-preview {font-size:0; letter-spacing:-1px; text-align:center; padding:10px 0 0 0}
+.gallery-preview a {display:inline-block; vertical-align:middle; width:140px; height:90px; border:4px solid #fafafa; position:relative; overflow:hidden; margin:6px}
+.gallery-preview a img {opacity:.5}
+.gallery-preview a.active {border-color:#8cc63e}
+.gallery-preview a.active img,
+.gallery-preview a:hover img {opacity:1}
