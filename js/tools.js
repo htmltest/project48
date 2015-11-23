@@ -270,6 +270,29 @@ var sliderTimer     = null;
             e.preventDefault();
         });
 
+        $(document).on('click', '.profile-photo-inner span', function(e) {
+            $('input[name="newAva"]').click();
+            e.preventDefault();
+        });
+
+        $('input[name="newAva"]').change(function() {
+            var options = {
+                success: function(data) {
+                    if (data.status == 1) {
+                        $('.avaImage').attr('src', data.pic);
+                    } else {
+                        alert(data.message, 'Ошибка');
+                    }
+                },
+                url:        '/ajax/newAvatar.php',
+                type:       'post',
+                dataType:   'json',
+                clearForm:  true,
+                resetForm:  true
+            };
+            $('input[name="newAva"]').parent().ajaxSubmit(options);
+        });
+
     });
 
     $(window).bind('load resize', function() {
