@@ -45,6 +45,10 @@ form {margin:30px 0; padding:0}
 .form-error-title {color:#ff411b; text-transform:uppercase; font:15px/20px P22UndergroundCYProDemi, sans-serif}
 .form-error-text {padding:5px 0 0 0}
 
+.form-success {background:#f9f6f6; text-align:center; margin:20px 0; padding:23px 20px 19px 20px; border:1px solid #fbd5d5}
+.form-success-title {color:#8cc63e; text-transform:uppercase; font:15px/20px P22UndergroundCYProDemi, sans-serif}
+.form-success-text {padding:5px 0 0 0}
+
 .form-row {margin:20px 0; display:table; width:100%}
 .form-label {display:table-cell; vertical-align:top; width:260px; font:15px/20px P22UndergroundCYProDemi, sans-serif; text-transform:uppercase; color:#000; padding:12px 0 0 0}
 .form-label span {color:#f00}
@@ -75,6 +79,7 @@ form {margin:30px 0; padding:0}
 .form-field-col+.form-field-col {padding:0 0 0 10px}
 
 .form-select select {width:100%; border:2px solid #8cc63e; font:14px/20px "Open Sans", sans-serif; color:#000; height:37px; margin:0; padding:6px 18px 7px 18px; background:#fafafa; box-sizing:border-box; border-radius:9px}
+.form-select label.error {display:block; margin:35px 0 -57px 0}
 
 .form-file-title {display:none; padding:5px 0}
 .form-file-input {position:relative; width:140px; height:39px; overflow:hidden; background:#eef7e2; text-align:center; cursor:pointer; text-transform:uppercase; font:12px/41px P22UndergroundCYProBook, sans-serif; color:#000; border-radius:20px}
@@ -188,6 +193,10 @@ header {background:#fff}
 .top-search-link .btn {width:140px; font-size:12px; font-family:P22UndergroundCYProMedium, sans-serif}
 .top-search-link .btn:before,
 .top-search-link .btn:after {content:""; display:inline-block; vertical-align:middle; width:11px; height:7px; background:url(../images/top-search-arrow.png); margin:-4px 15px 0 15px}
+.top-search-link.open .btn:before,
+.top-search-link.open .btn:after {background-position:left -7px}
+.top-search-link.open {position:relative}
+.top-search-link.open:after {content:""; display:block; width:10px; height:21px; position:absolute; left:50%; bottom:-21px; margin:0 0 0 -5px; background:url(../images/search-line.png)}
 .top-add-link {float:right; padding:0 20px 0 0}
 
 .events-detail-info {font:15px/20px P22UndergroundCYProBook, sans-serif; text-transform:uppercase; color:#393939; margin:-13px 0 26px -20px}
@@ -321,11 +330,19 @@ footer {background:#8cc63e}
 .main-tabs li:before {display:none}
 .main-tabs li a {display:block; position:relative; text-transform:uppercase; color:#fff; text-align:center; height:50px}
 .main-tabs li.active a {height:60px; background:#fff; border-radius:25px 25px 0 0; color:#000; padding-top:10px}
+.main-tabs li.active a {background:#e2f1cf}
+.main-tabs li+li.active a {background:#e2f1cf}
+.main-tabs li+li+li.active a {background:#fff url(../images/main-tabs-3.png) no-repeat}
 .main-tabs li a:hover {text-decoration:none}
 .main-tabs li a:before {content:""; display:block; position:absolute; left:0; top:0; width:100%; height:100%; box-sizing:border-box; border:1px solid #fff; border-radius:25px; opacity:.25}
 .main-tabs li a:hover:before {opacity:1}
 .main-tabs li.active a:before {left:-23px; top:auto; bottom:0; width:24px; height:24px; border:none; border-radius:0; opacity:1; background:url(../images/main-tabs-corners.png)}
+.main-tabs li.active a:before {background-position:left -24px}
+.main-tabs li+li.active a:before {background-position:left -24px}
+.main-tabs li+li+li.active a:before {background-position:left -24px}
 .main-tabs li.active a:after {content:""; display:block; position:absolute; right:-24px; bottom:0; width:24px; height:24px; background:url(../images/main-tabs-corners.png) -24px top}
+.main-tabs li.active a:after {background-position:-24px -24px}
+.main-tabs li+li.active a:after {background-position:-24px -24px}
 .main-tabs-text-1 {font:15px/18px P22UndergroundCYProHeavy, sans-serif; position:relative; padding:11px 0 0 0}
 .main-tabs-text-2 {font:12px/18px P22UndergroundCYProBook, sans-serif; position:relative}
 
@@ -339,6 +356,11 @@ footer {background:#8cc63e}
 .panel-main .panel-container {padding-top:40px}
 .panel-container:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
 .panel-left {float:left; width:50%}
+.panel-address {float:left; clear:left; padding:12px 0 0 66px; height:28px; margin:91px 0 0 0; background:url(../images/panel-address.png) no-repeat 10px; color:#000; font:15px/20px P22UndergroundCYProMedium, sans-serif}
+.panel-phone {float:left; clear:left; padding:12px 0 0 66px; height:28px; margin:10px 0 0 0; background:url(../images/panel-phone.png) no-repeat 10px; color:#000; font:15px/20px P22UndergroundCYProMedium, sans-serif}
+.panel-callback-link {float:left; clear:left; padding:32px 0 0 0; width:65%}
+.panel-callback-link .btn {width:100%; color:#fff}
+
 .panel-right {float:right; width:50%}
 .panel-menu-link {float:right; margin:48px 4px 0 4px; width:23px; height:22px; background:url(../images/panel-menu-link.png)}
 
@@ -347,6 +369,11 @@ nav ul {margin:0; padding:0; list-style:none}
 nav ul li {margin:0; padding:13px 0 6px 0; border-bottom:1px solid #9dce5b}
 nav ul li:before {display:none}
 nav ul li a {color:#fff}
+
+.panel-social {float:right; clear:right; width:300px; padding:26px 0 0 0}
+.panel-social a {float:left; width:48px; height:48px; margin:0 12px 0 0; background:url(../images/panel-social.png)}
+.panel-social a.panel-social-1 {background-position:left top}
+.panel-social a.panel-social-2 {background-position:-48px top}
 
 .breadcrumbs {font:15px/20px P22UndergroundCYProBook, sans-serif; text-transform:uppercase; padding:42px 0 0 0}
 .breadcrumbs span {display:inline-block; vertical-align:middle; width:7px; height:11px; background:url(../images/breadcrumbs.png); margin:-4px 6px 0 6px}
@@ -368,3 +395,33 @@ nav ul li a {color:#fff}
 .gallery-preview a.active {border-color:#8cc63e}
 .gallery-preview a.active img,
 .gallery-preview a:hover img {opacity:1}
+
+.search-line {display:none; background:#8cc63e; padding:5px 10px}
+.search-line.open {display:block}
+.search-line form {margin:0 auto; max-width:940px; padding:0; background:#fff; border-radius:15px; height:30px; box-shadow:inset 0 3px 2px rgba(12, 10, 5, .06)}
+.search-line-submit {float:left; padding:10px 0 0 20px}
+.search-line-submit input {display:block; width:12px; height:12px; border:none; background:url(../images/header-search.png); margin:0; padding:0; outline:none; cursor:pointer; -webkit-appearance:none}
+.search-line-submit input:hover {background-position:left -12px}
+.search-line-submit input:active {background-position:left -24px}
+.search-line-close {float:right; padding:11px 19px 0 0}
+.search-line-close a {display:block; width:8px; height:8px; background:url(../images/search-line-close.png); opacity:.25}
+.search-line-close a:hover {opacity:1}
+.search-line-input {margin:0 43px}
+.search-line-input input {float:left; width:100%; height:16px; margin:0; padding:9px 0 5px 0; outline:none; font:12px/16px P22UndergroundCYProBook, sans-serif; border:none; background:transparent; color:#000; -webkit-appearance:none}
+.search-line-input input::-webkit-input-placeholder {color:#000; opacity:1; text-transform:uppercase}
+.search-line-input input::-moz-placeholder {color:#000; opacity:1; text-transform:uppercase}
+.search-line-input input:-ms-input-placeholder {color:#000; opacity:1; text-transform:uppercase}
+.search-line-input input::-ms-clear {display:none}
+
+.similars {margin:0 -10px; font-size:0; line-height:0; letter-spacing:-1px}
+.similar {display:inline-block; vertical-align:top; width:33.33%; padding:0 10px; box-sizing:border-box; margin:20px 0 0 0}
+.similar-content {background:#fff; padding:0 0 43px 0}
+.similar-photo img {width:100%}
+.similar-text {padding:0 20px}
+.similar-name {font:15px/20px P22UndergroundCYProDemi, sans-serif; letter-spacing:0; text-transform:uppercase; color:#000; padding:23px 0 0 0}
+.similar-name a {color:#000}
+.similar-text .events-detail-info {font-size:12px; line-height:15px; margin:19px 0 0 0; letter-spacing:0}
+.similar-text .events-detail-info-item {padding:3px 0 2px 20px; margin:0; float:none}
+.similar-text .events-detail-info-time {background:url(../images/events-detail-info-time-min.png) no-repeat left top}
+.similar-text .events-detail-info-place {background:url(../images/events-detail-info-place-min.png) no-repeat 1px top}
+.similar-anonce {font-size:12px; line-height:15px; letter-spacing:0; color:#000; padding:16px 0 0 0}
