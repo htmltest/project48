@@ -4,6 +4,7 @@
 @font-face {font-family:"P22UndergroundCYProHeavy"; src:url("../fonts/P22UndergroundCYPro-Heavy.woff") format("woff"); font-weight:normal; font-style:normal}
 
 body {min-width:480px; margin:0; padding:0; font:14px/20px "Open Sans", sans-serif; color:#222; background:#fafafa}
+body.bg-white {background:#fff}
 
 a {color:#8cc63e; outline:none; text-decoration:none}
 a:hover {text-decoration:underline}
@@ -34,6 +35,7 @@ form {margin:30px 0; padding:0}
 
 .btn-add {display:inline-block; vertical-align:top; border:none; color:#000; overflow:visible; font:12px/44px P22UndergroundCYProMedium, sans-serif; width:220px; text-align:center; height:40px; margin:0; padding:0; outline:none; text-transform:uppercase; background:#eef7e2; border-radius:20px; cursor:pointer; -webkit-appearance:none}
 .btn-add:before {content:""; display:inline-block; vertical-align:middle; width:22px; height:22px; background:url(../images/btn-add.png); margin:-4px 10px 0 0}
+.btn-add-event:before {width:18px; height:21px; background:url(../images/main-list-icon-3.png)}
 .btn-add:hover {background:#b1e46c; text-decoration:none}
 .btn-add:active {background:#87db15}
 
@@ -218,6 +220,18 @@ footer {background:#8cc63e}
 .footer-map-link span {vertical-align:middle; background:url(../images/dots.png) repeat-x left bottom}
 .footer-map-link:hover span {background:none}
 .footer-map-link img {vertical-align:middle; margin:4px 0 0 0}
+.footer-map-list {display:none; position:absolute; left:-16px; bottom:-11px; background:#0d9c55; width:179px; box-shadow:0 0 10px rgba(0, 0, 0, .3)}
+.footer-map-list-link {display:inline-block; vertical-align:top; text-decoration:none; font-size:12px; line-height:14px; color:#fff}
+.footer-map-list-link:hover {text-decoration:none}
+.footer-map-list-link span {vertical-align:middle; background:url(../images/dots-2.png) repeat-x left bottom}
+.footer-map-list-link:hover span{background:none}
+.footer-map-list-link img{vertical-align:middle; margin:4px 0 0 0}
+.footer-map-list-bottom {background:#008652; padding:9px 0 11px 22px}
+.footer-map-list-inner ul {margin:0; padding:0; list-style:none; font-size:12px; line-height:14px}
+.footer-map-list-inner ul li{margin:0; padding:9px 22px 10px 22px; border-top:1px solid #008652}
+.footer-map-list-inner ul li:before {display:none}
+.footer-map-list-inner ul li:first-child {border:none}
+.footer-map-list-inner ul li a{color:#fff}
 .footer-feedback {float:right; width:138px; height:17px; padding:10px 0 0 0; margin:55px 0 0 0; border:1px solid #000; text-transform:uppercase; color:#000; font:10px/12px P22UndergroundCYProMedium, sans-serif; background:transparent; text-align:center}
 .footer-feedback:hover {text-decoration:none; background:#b1e46c}
 .footer-feedback:active {background:#87db15}
@@ -413,6 +427,16 @@ nav ul li a {color:#fff}
 .search-line-input input:-ms-input-placeholder {color:#000; opacity:1; text-transform:uppercase}
 .search-line-input input::-ms-clear {display:none}
 
+.filter {margin:0 auto; max-width:940px; text-transform:uppercase; font:12px/15px P22UndergroundCYProBook, sans-serif; padding:10px 0 4px 0}
+.filter:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
+.filter-left {float:left}
+.filter-right {float:right}
+.filter-name {float:left; font-family:P22UndergroundCYProDemi, sans-serif; color:#000}
+.filter-links {float:left}
+.filter-links a {float:left; color:#000; opacity:.5; margin:0 0 0 20px}
+.filter-links a:hover {color:#fff; opacity:1; text-decoration:none}
+.filter-links a.active {color:#fff; opacity:1; font-family:P22UndergroundCYProDemi, sans-serif}
+
 .similars {margin:0 -10px; font-size:0; line-height:0; letter-spacing:-1px}
 .similar {display:inline-block; vertical-align:top; width:33.33%; padding:0 10px; box-sizing:border-box; margin:20px 0 0 0}
 .similar-content {background:#fff; padding:0 0 43px 0}
@@ -425,3 +449,61 @@ nav ul li a {color:#fff}
 .similar-text .events-detail-info-time {background:url(../images/events-detail-info-time-min.png) no-repeat left top}
 .similar-text .events-detail-info-place {background:url(../images/events-detail-info-place-min.png) no-repeat 1px top}
 .similar-anonce {font-size:12px; line-height:15px; letter-spacing:0; color:#000; padding:16px 0 0 0}
+
+.calendar {background:#fff; margin:40px 0 0 0}
+.calendar-month {position:relative}
+.calendar-month-current {text-align:center; color:#000; text-transform:uppercase; font:20px/24px P22UndergroundCYProDemi, sans-serif; padding:21px 0 14px 0}
+.calendar-month-prev,
+.calendar-month-next {position:absolute; top:24px; text-transform:uppercase; font:12px/15px P22UndergroundCYProMedium, sans-serif}
+.calendar-month-prev {left:20px}
+.calendar-month-next {right:20px}
+.calendar-month-prev a:before {content:""; display:inline-block; vertical-align:top; width:12px; height:8px; background:url(../images/calendar-month-arrows.png); margin:1px 10px 0 0}
+.calendar-month-next a:after {content:""; display:inline-block; vertical-align:top; width:12px; height:8px; background:url(../images/calendar-month-arrows.png) -12px top; margin:1px 0 0 10px}
+.calendar-month-prev a:hover,
+.calendar-month-next a:hover {text-decoration:none; color:#b1e46c}
+.calendar-list:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
+.calendar-item {float:left; height:120px; box-sizing:border-box; border-top:1px solid #f0f0f0; position:relative; border-left:1px solid #f0f0f0; width:14.28%}
+.calendar-item.open:before {content:""; display:block; position:absolute; left:0; top:0; width:100%; height:100%; border:2px solid #fff; box-sizing:border-box; background:#f9fcf5}
+.calendar-item:nth-child(7n - 6) {border-left:none}
+.calendar-item-day {position:absolute; right:10px; top:9px; color:#a3a3a3}
+.calendar-item.active .calendar-item-day,
+.calendar-item:nth-child(7n) .calendar-item-day,
+.calendar-item:nth-child(7n - 1) .calendar-item-day {color:#8cc63e}
+.calendar-item.active .calendar-item-day {font-weight:bold}
+.calendar-item-content {position:absolute; left:0; bottom:11px; width:100%; box-sizing:border-box; font-size:12px; line-height:12px; padding:0 5px 0 23px}
+.calendar-item-link {position:relative; padding:0 0 8px 0}
+.calendar-item-link:before {content:""; display:block; width:7px; height:7px; position:absolute; left:-13px; top:4px; background:#8cc63e}
+.calendar-item-link > a {color:#000}
+.calendar-item-more {padding:0 0 8px 0}
+.calendar-item-more > a {color:#777c80}
+.calendar-item-add {display:none; position:absolute; left:0; top:0; width:100%; height:100%; padding:27px 0 0 0; border:2px solid #fff; box-sizing:border-box; background:#f9fcf5; text-transform:uppercase; font:12px/15px P22UndergroundCYProMedium, sans-serif; text-align:center; color:#000}
+.calendar-item-add:hover {text-decoration:none}
+.calendar-item-add:before {content:""; display:block; margin:0 auto 17px auto; width:18px; height:21px; background:url(../images/main-list-icon-3.png)}
+.calendar-item:hover .calendar-item-add {display:block}
+.calendar-item-popup {position:absolute; left:50%; bottom:48px; width:260px; padding:0 18px; margin:0 0 0 -159px; border:2px solid #8cc63e; background:#fff; z-index:99; box-shadow:0 0 10px rgba(0, 0, 0, .15)}
+.calendar-item-popup:before {content:""; display:block; width:0; height:0; border-top:12px solid #8cc63e; border-left:11px solid transparent; border-right:11px solid transparent; position:absolute; left:50%; bottom:-12px; margin:0 0 0 -11px}
+.calendar-item-popup:after {content:""; display:block; width:0; height:0; border-top:10px solid #fff; border-left:10px solid transparent; border-right:10px solid transparent; position:absolute; left:50%; bottom:-8px; margin:0 0 0 -10px}
+.calendar-item-popup-close {display:block; position:absolute; right:-14px; top:-13px; width:28px; height:28px; background:#8cc63e url(../images/calendar-popup-close.png) no-repeat center; border-radius:14px}
+.calendar-item-popup-close:hover {background-color:#b1e46c}
+.calendar-item-popup-close:active {background-color:#87db15}
+.calendar-item-popup-loading {height:42px; background:url(../images/loading.gif) no-repeat center}
+
+.calendar-detail {padding:0 0 18px 0}
+.calendar-detail-name {font:15px/20px P22UndergroundCYProDemi, sans-serif; text-transform:uppercase; color:#000; padding:19px 0 0 0}
+.calendar-detail-name a {color:#000}
+.calendar-detail .events-detail-info {font-size:12px; line-height:15px; margin:10px 0 0 0; letter-spacing:0}
+.calendar-detail .events-detail-info-item {padding:3px 0 2px 20px; margin:0; float:none}
+.calendar-detail .events-detail-info-time {background:url(../images/events-detail-info-time-min.png) no-repeat left top}
+.calendar-detail .events-detail-info-place {background:url(../images/events-detail-info-place-min.png) no-repeat 1px top}
+.calendar-detail-anonce {font-size:12px; line-height:15px; padding:14px 0 26px 0}
+.calendar-detail-link {padding:0 0 10px 0}
+.calendar-detail-link a {width:100%}
+
+.registration {max-width:460px; margin:0 auto}
+.registration h1 {text-align:center; padding:13px 0 22px 0}
+.registration .form-label {width:110px}
+.form-registration-ctrl {margin:-12px 0 0 0}
+.form-registration-ctrl:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
+.form-registration-forgot {float:left; padding:11px 0 0 110px}
+.form-registration-ctrl .form-submit .btn {width:auto; padding-left:30px; padding-right:30px}
+.form-registration-link {color:#000; padding:37px 0 0 110px}
