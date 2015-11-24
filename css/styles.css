@@ -111,6 +111,7 @@ h2+.articles {margin-top:0}
 .article-name {font:15px/20px P22UndergroundCYProDemi, sans-serif; text-transform:uppercase; letter-spacing:0; color:#000}
 .article-anonce {font-size:12px; line-height:20px; letter-spacing:0; color:#000; padding:17px 0 0 0}
 .article-tags {font-size:12px; line-height:20px; letter-spacing:0; padding:20px 0 0 0}
+.article-tags span {background:#8cc63e; color:#000; display:inline-block; padding:0 2px}
 .article-download {border-top:1px solid #f6f6f6; padding:20px 0 25px 0}
 .article-download:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
 .article-download a {float:left; color:#a7a9ac; font-size:10px; line-height:12px; letter-spacing:0; padding:0 0 0 35px}
@@ -553,3 +554,55 @@ nav ul li a {color:#fff}
 .profile-email {text-align:center; color:#000; padding:5px 0 0 0}
 .profile-edit-link {text-align:center; padding:32px 0 0 0}
 .profile-edit-link .btn img {vertical-align:middle; margin:-6px 7px 0 0}
+
+.events {width:100%; height:171px; position:relative; overflow:hidden; white-space:nowrap; font-size:0; line-height:0}
+.events-list {display:inline-block; position:relative; vertical-align:top; left:0}
+.events-month {display:inline-block; vertical-align:top; border-left:1px solid #f0f0f0; height:160px}
+.events-month:first-child {border:none}
+.events-month-title {font:15px/20px P22UndergroundCYProDemi, sans-serif; letter-spacing:0; text-transform:uppercase; color:#000; background:#fff; height:39px; position:relative}
+.events-month-title div {position:absolute; top:14px}
+.events-month-content {height:121px; background:#fff}
+.events-item {display:inline-block; vertical-align:top; width:133px; height:120px; border-top:1px solid #f0f0f0; border-left:1px solid #f0f0f0; position:relative}
+.events-item:first-child {border-left:none}
+.events-item.active {z-index:2}
+.events-item.active:before {content:""; display:block; width:100%; height:100%; padding:1px 1px 0 1px; position:absolute; left:-1px; top:-1px; background:#8cc63e}
+.events-item.active:after {content:""; display:block; width:0; height:0; position:absolute; left:0; bottom:-11px; border-top:11px solid #8cc63e; border-left:66px solid transparent; border-right:66px solid transparent}
+.events-item-day {position:absolute; right:10px; top:9px; color:#a3a3a3; font-size:14px; line-height:20px; letter-spacing:0}
+.events-item.full .events-item-day,
+.events-item.weekend .events-item-day {color:#8cc63e}
+.events-item.full .events-item-day {font-weight:bold}
+.events-item.active .events-item-day {color:#000; font-weight:bold}
+.events-item-content {position:absolute; left:0; bottom:11px; width:100%; box-sizing:border-box; font-size:12px; line-height:12px; letter-spacing:0; padding:0 5px 0 23px; white-space:normal}
+.events-item-link {position:relative; padding:0 0 8px 0}
+.events-item-link:before {content:""; display:block; width:7px; height:7px; position:absolute; left:-13px; top:4px; background:#8cc63e}
+.events-item.active .events-item-link:before {background:#000}
+.events-item-link > a {color:#000}
+.events-item-more {padding:0 0 8px 0}
+.events-item-more > a {color:#777c80}
+.events-prev,
+.events-next {display:block; width:39px; height:39px; background:#8cc63e url(../images/events-arrows.png); z-index:3; position:absolute; top:81px; border-radius:20px}
+.events-prev {left:44px}
+.events-next {right:44px; background-position:-39px top}
+.events-prev:hover,
+.events-next:hover {background-color:#b1e46c}
+.events-prev:active,
+.events-next:active {background-color:#87db15}
+
+.search-mark {color:#8cc63e}
+
+.press {padding:20px 0 0 0}
+.press-item {border-bottom:1px solid #eaeaea; display:table; width:100%}
+.press-item-photo {display:table-cell; vertical-align:top; padding:20px 20px 20px 0; line-height:0; width:220px}
+.press-item-content {display:table-cell; vertical-align:middle; padding:20px 0}
+.press-item-name {font:15px/20px P22UndergroundCYProDemi, sans-serif; text-transform:uppercase; color:#000}
+.press-item-name a {color:#000}
+.press-item-anonce {padding:7px 0 0 0; font-size:14px; line-height:20px; letter-spacing:0}
+.press-item-source {color:#b2b2b2; padding:20px 0 0 0; font-size:14px; line-height:20px; letter-spacing:0}
+h2+.press-item-source {margin:-34px 0 30px 0}
+
+.top-back-link {float:left; margin:9px 17px 0 0; font:35px/35px P22UndergroundCYProDemi, sans-serif}
+
+.press-ctrl {border-bottom:2px solid #8cc63e; padding:20px 0 17px 0; margin:0 0 15px 0}
+.press-ctrl:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
+.press-ctrl .press-item-source {float:left; padding:0}
+.social-likes {float:right}

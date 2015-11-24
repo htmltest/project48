@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Мосприрода</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic&subset=latin,cyrillic" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="js/chosen-1.4.2/chosen.css" />
+
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/jquery.maskedinput.min.js"></script>
+        <script src="js/chosen-1.4.2/chosen.jquery.min.js"></script>
+        <script src="js/modernizr-custom.min.js"></script>
+        <script src="js/tools.js"></script>
+
+        <meta name="viewport" content="width=device-width" />
+    </head>
+
+    <body>
+
+        <!-- panel -->
+        <div class="panel">
+            <div class="panel-container">
+                <div class="panel-left">
+                    <div class="logo"><a href="#"><img src="images/logo.png" alt="" width="189" height="57" /></a></div>
+                    <div class="panel-address">Москва, Мичуринский пр-т. 13</div>
+                    <div class="panel-phone">+7 (499) 739-27-05</div>
+                    <div class="panel-callback-link"><a href="#" class="btn">Обратная связь</a></div>
+                </div>
+                <div class="panel-right">
+                    <a href="#" class="panel-menu-link"></a>
+                    <a href="#" class="user-link"></a>
+                    <div class="header-search">
+                        <form action="#" method="post">
+                            <div class="header-search-input"><input type="text" name="search" value="" placeholder="поиск по сайту" /></div>
+                            <div class="header-search-submit"><input type="submit" value="" /></div>
+                        </form>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">Деятельность</a></li>
+                            <li><a href="#">Услуги</a></li>
+                            <li><a href="#">Чем заняться в парке</a></li>
+                            <li><a href="#">Территории</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                    </nav>
+                    <div class="panel-social">
+                        <a href="#" class="panel-social-1"></a>
+                        <a href="#" class="panel-social-2"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- panel END -->
+
+        <header>
+            <div class="header-inner">
+                <div class="logo"><a href="#"><img src="images/logo.png" alt="" width="189" height="57" /></a></div>
+                <a href="#" class="menu-link"></a>
+                <a href="#" class="user-link"></a>
+                <div class="header-search">
+                    <form action="#" method="post">
+                        <div class="header-search-input"><input type="text" name="search" value="" placeholder="поиск по сайту" /></div>
+                        <div class="header-search-submit"><input type="submit" value="" /></div>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <!-- top -->
+        <div class="top">
+            <div class="top-container">
+                <h1>Календарь</h1>
+                <div class="top-search-link open"><a href="#" class="btn">фильтр</a></div>
+                <div class="top-add-link"><a href="#" class="btn-add btn-add-event">Добавить Событие</a></div>
+            </div>
+        </div>
+        <!-- top END -->
+
+        <!-- search line -->
+        <div class="search-line open">
+            <div class="filter">
+                <div class="filter-left">
+                    <div class="filter-name">Тип мероприятия:</div>
+                    <div class="filter-links">
+                        <a href="#">Все</a>
+                        <a href="#">Лекция</a>
+                        <a href="#">Конференция</a>
+                        <a href="#">Акция</a>
+                        <a href="#" class="active">Экскурсия</a>
+                        <a href="#">Фестиваль</a>
+                    </div>
+                </div>
+                <div class="filter-right">
+                    <div class="filter-name">Стоимость</div>
+                    <div class="filter-links">
+                        <a href="#">Платное</a>
+                        <a href="#" class="active">Бесплатное</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- search line END -->
+
+        <!-- events -->
+        <div class="events">
+            <div class="events-list">
+                <!-- events month -->
+                <div class="events-month">
+                    <div class="events-month-title"><div>Декабрь 2015</div></div>
+                    <div class="events-month-content">
+                        <div class="events-item full">
+                            <div class="events-item-day">1</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">2</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">3</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">4</div>
+                        </div>
+                        <div class="events-item full active">
+                            <div class="events-item-day">5</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">6</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">7</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">8</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">9</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">10</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">11</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">12</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">13</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">14</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">15</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">16</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">17</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">18</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">19</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">20</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">21</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">22</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">23</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">24</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">25</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">26</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">27</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">28</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">29</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">30</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">31</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- events month END -->
+
+                <!-- events month -->
+                <div class="events-month">
+                    <div class="events-month-title"><div>Январь 2016</div></div>
+                    <div class="events-month-content">
+                        <div class="events-item full">
+                            <div class="events-item-day">1</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">2</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">3</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">4</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">5</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">6</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">7</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">8</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">9</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">10</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">11</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">12</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">13</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">14</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">15</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">16</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">17</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">18</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">19</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">20</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">21</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">22</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">23</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">24</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">25</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">26</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">27</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">28</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">29</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">30</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">31</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- events month END -->
+
+                <!-- events month -->
+                <div class="events-month">
+                    <div class="events-month-title"><div>Февраль 2016</div></div>
+                    <div class="events-month-content">
+                        <div class="events-item full">
+                            <div class="events-item-day">1</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">2</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">3</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">4</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">5</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">6</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">7</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">8</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">9</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">10</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">11</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">12</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">13</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">14</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">15</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">16</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">17</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">18</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">19</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">20</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">21</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">22</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">23</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">24</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">25</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">26</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">27</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">28</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">29</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- events month END -->
+
+                <!-- events month -->
+                <div class="events-month">
+                    <div class="events-month-title"><div>Март 2016</div></div>
+                    <div class="events-month-content">
+                        <div class="events-item full">
+                            <div class="events-item-day">1</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">2</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">3</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">4</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">5</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">6</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">7</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">8</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">9</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">10</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">11</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">12</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">13</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">14</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">15</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">16</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">17</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">18</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">19</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">20</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">21</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">22</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">«Все краски осени»!</a></div>
+                                <div class="events-item-link"><a href="#">Арт-Эко</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 1</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">23</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">24</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">Конкурс «Юные экологи Москвы»</a></div>
+                                <div class="events-item-link"><a href="#">Всероссийский конкурс «Нацио...</a></div>
+                                <div class="events-item-more"><a href="#">+ ещё 2</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item">
+                            <div class="events-item-day">25</div>
+                        </div>
+                        <div class="events-item full">
+                            <div class="events-item-day">26</div>
+                            <div class="events-item-content">
+                                <div class="events-item-link"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                            </div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">27</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">28</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">29</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">30</div>
+                        </div>
+                        <div class="events-item weekend">
+                            <div class="events-item-day">31</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- events month END -->
+            </div>
+            <a href="#" class="events-prev"></a>
+            <a href="#" class="events-next"></a>
+        </div>
+        <!-- events END -->
+
+        <!-- container -->
+        <div class="container">
+
+            <!-- content -->
+            <div class="content">
+                <div class="content-wrap">
+
+                    <h2>V Московский городской Фестиваль экологических театров</h2>
+
+                    <div class="events-detail-info">
+                        <div class="events-detail-info-item events-detail-info-time">07 июля в 19:00</div>
+                        <div class="events-detail-info-item events-detail-info-place">Зеленоград, парк 40-летия Победы</div>
+                    </div>
+
+                    <p>Охрана природных территорий и объектов инфраструктуры является важнейшей задачей организации и включает постоянный контроль, выявление нарушений и оперативное реагирование.</p>
+                    <p>Управление охраны и инспекторского контроля осуществляет систематическое обследование территорий. При обнаружении нарушений, рассчитывается размер вреда, причиненного окружающей среде, осуществляется возбуждение и расследование дел об административных правонарушениях, вынесение постановлений и назначение соответствующих наказаний.</p>
+
+                    <!-- gallery -->
+                    <div class="gallery">
+                        <div class="gallery-big"><img src="files/gallery-big.jpg" alt="" /></div>
+                        <div class="gallery-preview">
+                            <a href="files/gallery-preview-1.jpg"><img src="files/gallery-preview-1.jpg" alt="" width="140" height="90" /></a>
+                            <a href="files/gallery-preview-2.jpg"><img src="files/gallery-preview-2.jpg" alt="" width="140" height="90" /></a>
+                            <a href="files/gallery-big.jpg" class="active"><img src="files/gallery-preview-3.jpg" alt="" width="140" height="90" /></a>
+                            <a href="files/gallery-preview-4.jpg"><img src="files/gallery-preview-4.jpg" alt="" width="140" height="90" /></a>
+                        </div>
+                    </div>
+                    <!-- gallery END -->
+
+                    <h2>Похожие события</h2>
+
+                    <!-- similars -->
+                    <div class="similars">
+
+                        <!-- similar -->
+                        <div class="similar">
+                            <div class="similar-content">
+                                <div class="similar-photo"><a href="#"><img src="files/similar-1.jpg" alt="" /></a></div>
+                                <div class="similar-text">
+                                    <div class="similar-name"><a href="#">V Московский городской Фестиваль экологических театров</a></div>
+                                    <div class="events-detail-info">
+                                        <div class="events-detail-info-item events-detail-info-time">07 июля в 19:00</div>
+                                        <div class="events-detail-info-item events-detail-info-place">улица Юности, 2с1</div>
+                                    </div>
+                                    <div class="similar-anonce">Природно-исторический парк «Останкино» находится на северо-востоке столицы. В состав природно-исторического парка вошли Главный ботанический сад Российской Академии Наук</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- similar END -->
+
+                        <!-- similar -->
+                        <div class="similar">
+                            <div class="similar-content">
+                                <div class="similar-photo"><a href="#"><img src="files/similar-2.jpg" alt="" /></a></div>
+                                <div class="similar-text">
+                                    <div class="similar-name"><a href="#">Вечерняя эколого-краеведческая экскурсия «Световая среда Городского лесопарка»</a></div>
+                                    <div class="events-detail-info">
+                                        <div class="events-detail-info-item events-detail-info-time">07 июля в 19:00</div>
+                                        <div class="events-detail-info-item events-detail-info-place">МО, Мытищинский р-н, п. Леспаркхоза Клязьминский, д.1</div>
+                                    </div>
+                                    <div class="similar-anonce">Экскурсия «Световая среда Городского лесопарка» предусматривает знакомство с элементами светового оформления Зеленограда, рассказ об альтернативных источниках освещения и праздничном световом оформлении города в разные годы.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- similar END -->
+
+                        <!-- similar -->
+                        <div class="similar">
+                            <div class="similar-content">
+                                <div class="similar-photo"><a href="#"><img src="files/similar-3.jpg" alt="" /></a></div>
+                                <div class="similar-text">
+                                    <div class="similar-name"><a href="#">Эколого-краеведческая экскурсия «Память на карте города»</a></div>
+                                    <div class="events-detail-info">
+                                        <div class="events-detail-info-item events-detail-info-time">07 июля в 19:00</div>
+                                        <div class="events-detail-info-item events-detail-info-place">Зеленоград, парк 40-летия Победы</div>
+                                    </div>
+                                    <div class="similar-anonce">Знакомство с памятными местами округа, связанными с Великой Отечественной войной, рассказ о том, что помнит природа, и как сохраняют неравнодушные люди память о героическом прошлом, о событиях ноября-декабря 1941 года на Крюковской земле.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- similar END -->
+
+                    </div>
+                    <!-- similars END -->
+
+                </div>
+            </div>
+            <!-- content END -->
+
+        </div>
+        <!-- container END -->
+
+        <footer>
+            <div class="footer-inner">
+                <div class="footer-logo"><img src="images/footer-logo.png" alt="" width="114" height="35" /></div>
+                <div class="footer-map">
+                    <div class="footer-map-img"><img src="images/footer-map.png" alt="" width="95" height="98" /></div>
+                    <div class="footer-map-text">
+                        <div class="footer-map-title">территории</div>
+                        <a href="#" class="footer-map-link">
+                            <span class="footer-map-link-value">Выберите территорию</span>
+                            <img src="images/footer-map-link-arrow.png" alt="" width="7" height="4" />
+                        </a>
+                        <div class="footer-map-list">
+                            <div class="footer-map-list-inner">
+                                <ul>
+                                    <li><a href="#">СВАО и Сокольники</a></li>
+                                    <li><a href="#">Измайлово и Косинский</a></li>
+                                    <li><a href="#">Кузьминки-Люблино</a></li>
+                                    <li><a href="#">Царицыно</a></li>
+                                    <li><a href="#">Битцевский лес</a></li>
+                                    <li><a href="#">Тропарево и Теплый Стан</a></li>
+                                    <li><a href="#">Долина р.Сетунь</a></li>
+                                    <li><a href="#">Москворецкий</a></li>
+                                    <li><a href="#">Тушинский и Покровское-Стрешнево</a></li>
+                                    <li><a href="#">ЗелАО</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-map-list-bottom">
+                                <a href="#" class="footer-map-list-link">
+                                    <span class="footer-map-list-link-value">Выберите территорию</span>
+                                    <img src="images/footer-map-link-arrow-2.png" alt="" width="7" height="4" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="footer-feedback">Обратная связь</a>
+                <div class="footer-contacts">
+                    <div class="footer-contacts-title">адрес / телефон</div>
+                    <div class="footer-contacts-text">ул. Новый Арбат, стр. 11, корп. 1  / +7 (495) 644-20-77</div>
+                </div>
+                <div class="footer-text">(с) 2014 Департамент природопользования и охраны окружающей среды города Москвы<br />При полном или частичном использовании материалов с официальных сайтов Правительства Москвы ссылка на источник обязательна.</div>
+            </div>
+        </footer>
+
+    </body>
+</html>
