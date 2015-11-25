@@ -219,8 +219,6 @@ var sliderTimer     = null;
         });
 
         $('.search-line-close a').click(function(e) {
-            $('.top-search-link').removeClass('open');
-            $('.search-line').removeClass('open');
             $('.search-line-input input').val('');
             e.preventDefault();
         });
