@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Мосприрода</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic&subset=latin,cyrillic" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="js/chosen-1.4.2/chosen.css" />
+        <link rel="stylesheet" href="js/jqueryui-datepicker/jquery-ui.min.css" />
+        <link rel="stylesheet" href="js/jqueryui-datepicker/jquery-ui.structure.min.css" />
+        <link rel="stylesheet" href="js/jqueryui-datepicker/jquery-ui.theme.min.css" />
+        <link rel="stylesheet" href="js/jscrollpane/jquery.jscrollpane.css" />
+
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/jquery.maskedinput.min.js"></script>
+        <script src="js/chosen-1.4.2/chosen.jquery.min.js"></script>
+        <script src="js/modernizr-custom.min.js"></script>
+        <script src="js/jqueryui-datepicker/jquery-ui.min.js"></script>
+        <script src="js/jqueryui-datepicker/jquery.ui.datepicker-ru.js"></script>
+        <script src="js/jscrollpane/jquery.mousewheel.js"></script>
+        <script src="js/jscrollpane/jquery.jscrollpane.min.js"></script>
+        <script src="js/tools.js"></script>
+
+        <meta name="viewport" content="width=device-width" />
+    </head>
+
+    <body>
+
+        <!-- panel -->
+        <div class="panel">
+            <div class="panel-container">
+                <div class="panel-left">
+                    <div class="logo"><a href="#"><img src="images/logo.png" alt="" width="189" height="57" /></a></div>
+                    <div class="panel-address">Москва, Мичуринский пр-т. 13</div>
+                    <div class="panel-phone">+7 (499) 739-27-05</div>
+                    <div class="panel-callback-link"><a href="#" class="btn">Обратная связь</a></div>
+                </div>
+                <div class="panel-right">
+                    <a href="#" class="panel-menu-link"></a>
+                    <a href="#" class="user-link"></a>
+                    <div class="header-search">
+                        <form action="#" method="post">
+                            <div class="header-search-input"><input type="text" name="search" value="" placeholder="поиск по сайту" /></div>
+                            <div class="header-search-submit"><input type="submit" value="" /></div>
+                        </form>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="#">О нас</a></li>
+                            <li><a href="#">Деятельность</a></li>
+                            <li><a href="#">Услуги</a></li>
+                            <li><a href="#">Чем заняться в парке</a></li>
+                            <li><a href="#">Территории</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                    </nav>
+                    <div class="panel-social">
+                        <a href="#" class="panel-social-1"></a>
+                        <a href="#" class="panel-social-2"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- panel END -->
+
+        <header>
+            <div class="header-inner">
+                <div class="logo"><a href="#"><img src="images/logo.png" alt="" width="189" height="57" /></a></div>
+                <a href="#" class="menu-link"></a>
+                <a href="#" class="user-link"></a>
+                <div class="header-search">
+                    <form action="#" method="post">
+                        <div class="header-search-input"><input type="text" name="search" value="" placeholder="поиск по сайту" /></div>
+                        <div class="header-search-submit"><input type="submit" value="" /></div>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <!-- territory -->
+        <div class="territory">
+            <div class="map-territory" id="map"></div>
+            <script src="http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+            <script type="text/javascript">
+                ymaps.ready(init);
+
+                var myMap;
+
+                function init () {
+                    myMap = new ymaps.Map('map', {
+                        center: [56.136, 40.390],
+                        zoom: 11,
+                        controls: []
+                    });
+
+                    // Создание макета балуна
+                    var MyBalloonLayout = ymaps.templateLayoutFactory.createClass(
+                        '<div class="popover popover-territory"><div class="arrow"></div>' +
+                            '$[[options.contentLayout]]' +
+                            '</div>', {
+                            /**
+                             * Строит экземпляр макета на основе шаблона и добавляет его в родительский HTML-элемент.
+                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#build
+                             * @function
+                             * @name build
+                             */
+                            build: function () {
+                                this.constructor.superclass.build.call(this);
+
+                                this._$element = $('.popover', this.getParentElement());
+
+                                this.applyElementOffset();
+                            },
+
+                            /**
+                             * Удаляет содержимое макета из DOM.
+                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#clear
+                             * @function
+                             * @name clear
+                             */
+                            clear: function () {
+                                this._$element.find('.close')
+                                    .off('click');
+
+                                this.constructor.superclass.clear.call(this);
+                            },
+
+                            /**
+                             * Метод будет вызван системой шаблонов АПИ при изменении размеров вложенного макета.
+                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+                             * @function
+                             * @name onSublayoutSizeChange
+                             */
+                            onSublayoutSizeChange: function () {
+                                MyBalloonLayout.superclass.onSublayoutSizeChange.apply(this, arguments);
+
+                                if(!this._isElement(this._$element)) {
+                                    return;
+                                }
+
+                                this.applyElementOffset();
+
+                                this.events.fire('shapechange');
+                            },
+
+                            /**
+                             * Сдвигаем балун, чтобы "хвостик" указывал на точку привязки.
+                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+                             * @function
+                             * @name applyElementOffset
+                             */
+                            applyElementOffset: function () {
+                                this._$element.css({
+                                    left: 28,
+                                    top: -35
+                                });
+                            },
+
+                            /**
+                             * Закрывает балун при клике на крестик, кидая событие "userclose" на макете.
+                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+                             * @function
+                             * @name onCloseClick
+                             */
+                            onCloseClick: function (e) {
+                                e.preventDefault();
+
+                                this.events.fire('userclose');
+                            },
+
+                            /**
+                             * Используется для автопозиционирования (balloonAutoPan).
+                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ILayout.xml#getClientBounds
+                             * @function
+                             * @name getClientBounds
+                             * @returns {Number[][]} Координаты левого верхнего и правого нижнего углов шаблона относительно точки привязки.
+                             */
+                            getShape: function () {
+                                if(!this._isElement(this._$element)) {
+                                    return MyBalloonLayout.superclass.getShape.call(this);
+                                }
+
+                                var position = this._$element.position();
+
+                                return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
+                                    [position.left, position.top], [
+                                        position.left + this._$element[0].offsetWidth,
+                                        position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight
+                                    ]
+                                ]));
+                            },
+
+                            /**
+                             * Проверяем наличие элемента (в ИЕ и Опере его еще может не быть).
+                             * @function
+                             * @private
+                             * @name _isElement
+                             * @param {jQuery} [element] Элемент.
+                             * @returns {Boolean} Флаг наличия.
+                             */
+                            _isElement: function (element) {
+                                return element && element[0] && element.find('.arrow')[0];
+                            }
+                        });
+
+                    // Создание вложенного макета содержимого балуна.
+                    var MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+                        '<div class="popover-img">$[properties.balloonImg]</div>' +
+                        '<h3>$[properties.balloonHeader]</h3>' +
+                        '<div class="popover-text">$[properties.balloonContent]</div>' +
+                        '<div class="popover-link"><a href="$[properties.balloonLink]" class="btn">Подробнее &rarr;</a></div>'
+                    );
+
+                    var myGeocoder = ymaps.geocode('Москва, Природно-исторический парк «Останкино»');
+                    myGeocoder.then(
+                        function (res) {
+                            var coords = res.geoObjects.get(0).geometry.getCoordinates();
+                            myPlacemark = new ymaps.Placemark(coords, {
+                                balloonImg: '<img src="files/map-photo.jpg" alt="" width="260" height="107" />',
+                                balloonHeader: 'Природно-исторический парк «Останкино»',
+                                balloonContent: 'Природно-исторический парк «Останкино» находится на северо-востоке столицы. В состав природно-исторического парка вошли Главный ботанический сад Российской Академии Наук',
+                                balloonLink: '#',
+                            }, {
+                                balloonLayout: MyBalloonLayout,
+                                balloonContentLayout: MyBalloonContentLayout,
+                                balloonPanelMaxMapArea: 0,
+                                balloonShadow: false,
+                                hideIconOnBalloonOpen: false,
+                                iconLayout: 'default#image',
+                                iconImageHref: 'images/map-icon-2.png',
+                                iconImageSize: [31, 31],
+                                iconImageOffset: [-16, -16]
+                            });
+                            myMap.geoObjects.add(myPlacemark);
+                            myMap.setCenter(coords);
+                        },
+                        function (err) {
+                            alert('Ошибка');
+                        }
+                    );
+
+                }
+            </script>
+
+            <div class="territory-search">
+                <form action="#" method="post">
+                    <div class="territory-search-input"><input type="text" name="search" value="" placeholder="Район или экскурсия" /></div>
+                    <div class="territory-search-submit"><input type="submit" value="" /></div>
+                </form>
+            </div>
+
+            <!-- territory filter -->
+            <div class="territory-filter">
+                <form action="#" method="post">
+                    <div class="form-select">
+                        <select name="territory">
+                            <option value="1" selected="selected">СВАО и Сокольники</option>
+                            <option value="2">Измайлово и Косинский</option>
+                            <option value="3">Кузьминки-Люблино</option>
+                            <option value="4">Царицыно</option>
+                            <option value="5">Битцевский лес</option>
+                            <option value="6">Тропарево и Теплый Стан</option>
+                            <option value="7">Долина р.Сетунь</option>
+                            <option value="8">Москворецкий</option>
+                            <option value="9">Тушинский и Покровское-Стрешнево</option>
+                            <option value="10">ЗелАО</option>
+                        </select>
+                    </div>
+
+                    <div class="territory-filter-list">
+                        <div class="territory-filter-list-content">
+                            <!-- territory filter group -->
+                            <div class="territory-filter-group open">
+                                <div class="territory-filter-group-title">
+                                    <div class="territory-filter-group-title">
+                                        <div class="territory-filter-group-icon"></div>
+                                        <div class="territory-filter-group-name">Спорт <span><em>5 /</em> 153</span></div>
+                                        <div class="territory-filter-group-ctrl"></div>
+                                    </div>
+                                </div>
+                                <div class="territory-filter-group-list">
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-1.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter1" />
+                                            Велодорожки и прокат велосипедов
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-2.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter2" checked="checked" />
+                                            Прокат спортивного инвентаря и снаряжения
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-3.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter3" checked="checked" />
+                                            Лыжные трассы
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-4.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter4" />
+                                            Спортивные площадки
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- territory filter group END -->
+                            <!-- territory filter group -->
+                            <div class="territory-filter-group">
+                                <div class="territory-filter-group-title">
+                                    <div class="territory-filter-group-title">
+                                        <div class="territory-filter-group-icon"></div>
+                                        <div class="territory-filter-group-name">Отдых и развлечения  <span><em style="display:none">5 /</em> 352</span></div>
+                                        <div class="territory-filter-group-ctrl"></div>
+                                    </div>
+                                </div>
+                                <div class="territory-filter-group-list">
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-1.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter7" />
+                                            Велодорожки и прокат велосипедов
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-2.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter8" checked="checked" />
+                                            Прокат спортивного инвентаря и снаряжения
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-3.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter9" checked="checked" />
+                                            Лыжные трассы
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-4.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter10" />
+                                            Спортивные площадки
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- territory filter group END -->
+
+                            <!-- territory filter group -->
+                            <div class="territory-filter-group open">
+                                <div class="territory-filter-group-title">
+                                    <div class="territory-filter-group-title">
+                                        <div class="territory-filter-group-icon"></div>
+                                        <div class="territory-filter-group-name">Экотуризм <span><em style="display:none">5 /</em> 112</span></div>
+                                        <div class="territory-filter-group-ctrl"></div>
+                                    </div>
+                                </div>
+                                <div class="territory-filter-group-list">
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-5.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter5" />
+                                            ЭПЦ
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-6.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter6" checked="checked" />
+                                            Экскурсии
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-3.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter11" checked="checked" />
+                                            Лыжные трассы
+                                        </div>
+                                    </div>
+                                    <div class="territory-filter-item">
+                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-4.jpg" alt="" width="30" height="30" /></div></div>
+                                        <div class="territory-filter-item-icon-name">
+                                            <input type="checkbox" name="filter12" />
+                                            Спортивные площадки
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- territory filter group END -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- territory filter END -->
+        </div>
+        <!-- territory END -->
+
+        <script>
+            (function($) {
+
+                $(window).bind('load resize', function() {
+                    $('.territory').height($(window).height() - $('header').height());
+                });
+
+            })(jQuery);
+        </script>
+    </body>
+</html>

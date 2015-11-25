@@ -623,3 +623,56 @@ h2+.press-item-source {margin:-34px 0 30px 0}
 .form-photo-add:active {background-color:#87db15}
 #newPhotoForm {position:absolute; left:-100000px}
 .form-photo-loading {display:block; width:79px; height:79px; border-radius:2px; background:#8cc63e url(../images/photo-loader.gif) no-repeat center}
+
+.territory {position:relative; min-height:400px; overflow:hidden}
+.territory:after {content:""; display:block; width:100%; height:1px; position:absolute; left:0; top:-1px; background:#fff; box-shadow:0 0 5px rgba(12, 10, 5, .18)}
+
+#map.map-territory {position:absolute; left:0; top:0; width:100%; height:100%}
+
+.popover {width:260px; padding:20px; position:relative; background:#fff; box-shadow:0 0 5px rgba(12, 10, 5, .18); z-index:999}
+.popover-territory {color:#000}
+.popover-img {line-height:0}
+.popover-link {padding:34px 0 0 0}
+.popover-link .btn {width:100%}
+.popover .arrow {position:absolute; left:-12px; top:23px; width:0; height:0; border-right:12px solid #fff; border-top:12px solid transparent; border-bottom:12px solid transparent}
+
+.territory-search {position:absolute; left:40px; top:40px; width:320px; height:40px; background:#fff; box-shadow:0 0 5px rgba(12, 10, 5, .18); border-radius:2px}
+.territory-search form {margin:0; padding:0}
+.territory-search-input {float:left}
+.territory-search-input input {vertical-align:top; margin:0; padding:10px 15px; outline:none; width:260px; height:20px; font:14px/20px "Open Sans", sans-serif; border:none; background:transparent; color:#000; -webkit-appearance:none}
+.territory-search-input input::-webkit-input-placeholder {color:#000; opacity:.5}
+.territory-search-input input::-moz-placeholder {color:#000; opacity:.5}
+.territory-search-input input:-ms-input-placeholder {color:#000; opacity:.5}
+.territory-search-submit {float:right; padding:13px 14px 0 0}
+.territory-search-submit input {display:block; width:15px; height:15px; border:none; background:url(../images/territory-search.png); margin:0; padding:0; outline:none; cursor:pointer; -webkit-appearance:none}
+.territory-search-submit input:hover {background-position:left -15px}
+.territory-search-submit input:active {background-position:left -30px}
+
+.territory-filter {position:absolute; left:40px; top:100px; width:300px; padding:10px; background:#fff; box-shadow:0 0 5px rgba(12, 10, 5, .18); border-radius:2px}
+.territory-filter form {margin:0; padding:0}
+.territory-filter-list {max-height:450px; margin:20px 0 0 0; position:relative; overflow:hidden}
+.territory-filter-list-content {width:280px}
+.territory-filter-group {padding:20px 0 0 0}
+.territory-filter-group:first-child {padding:0}
+.territory-filter-group-title {cursor:pointer; display:table; width:100%}
+.territory-filter-group-icon {display:table-cell; vertical-align:middle; width:38px}
+.territory-filter-group-icon:after {content:""; display:block; width:38px; height:38px; background:url(../images/territory-filter-group-icon.png)}
+.territory-filter-group-name {display:table-cell; vertical-align:middle; width:206px; padding:10px 10px 0 10px; text-transform:uppercase; color:#000; font:14px/20px P22UndergroundCYProMedium, sans-serif}
+.territory-filter-group-name span {color:#8cc63e; margin:0 0 0 5px}
+.territory-filter-group-name em {font-style:normal}
+.territory-filter-group-ctrl {display:table-cell; vertical-align:middle; width:16px}
+.territory-filter-group-ctrl:after {content:""; display:block; width:16px; height:16px; background:url(../images/territory-filter-group.png) no-repeat left -16px}
+.territory-filter-group.open .territory-filter-group-ctrl:after {background-position:left top}
+.territory-filter-group-list {display:none}
+.territory-filter-group.open .territory-filter-group-list {display:block}
+.territory-filter-item {display:table; width:100%; cursor:pointer; margin:10px 0 0 0}
+.territory-filter-item-icon {display:table-cell; vertical-align:middle; width:38px; line-height:0}
+.territory-filter-item-icon div {padding:3px; border:1px solid #e2e2e2; border-radius:20px; width:30px; height:30px}
+.territory-filter-item-icon div img {border-radius:15px; opacity:.5}
+.territory-filter-item:hover .territory-filter-item-icon div,
+.territory-filter-item.checked .territory-filter-item-icon div {border-color:#8cc63e}
+.territory-filter-item.checked .territory-filter-item-icon div img {opacity:1}
+.territory-filter-item-icon-name {display:table-cell; vertical-align:middle; padding:0 0 0 10px; color:#777c80; font-size:12px; line-height:15px}
+.territory-filter-item-icon-name input {display:none}
+.territory-filter-item:hover .territory-filter-item-icon-name,
+.territory-filter-item.checked .territory-filter-item-icon-name {color:#000}

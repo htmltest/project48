@@ -414,6 +414,22 @@ var sliderTimer     = null;
             $('input[name="newPhoto"]').parent().ajaxSubmit(options);
         });
 
+        $('.territory-filter-item input:checked').parent().parent().addClass('checked');
+        $('.territory-filter-item').click(function() {
+            $(this).toggleClass('checked');
+            $(this).find('input').prop('checked', $(this).hasClass('checked')).trigger('change');
+        });
+
+        $('.territory-filter-group-title').click(function() {
+            $(this).parent().toggleClass('open');
+        });
+
+        $('.territory-filter-list').each(function() {
+            $(this).jScrollPane({
+                autoReinitialise: true
+            });
+        });
+
     });
 
     $(window).bind('load resize', function() {
