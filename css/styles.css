@@ -59,13 +59,15 @@ form {margin:30px 0; padding:0}
 .form-input input {border:2px solid #8cc63e; font:14px/20px "Open Sans", sans-serif; color:#000; vertical-align:top; margin:0; padding:6px 18px 7px 18px; width:100%; height:37px; box-sizing:border-box; outline:none; border-radius:9px; box-shadow:none; background:#fafafa; -webkit-appearance:none}
 .form-input input.error {border-color:#ff411b}
 .form-input input:focus {border-color:#5c9015}
+.form-input-date input {width:160px; background-image:url(../images/input-date.png); background-repeat:no-repeat; background-position:right top}
+.form-input-date label.error {display:block}
 
 .form-textarea textarea {border:2px solid #8cc63e; font:14px/20px "Open Sans", sans-serif; color:#000; vertical-align:top; margin:0; padding:6px 18px 7px 18px; width:100%; height:99px; box-sizing:border-box; outline:none; border-radius:9px; box-shadow:none; background:#fafafa; overflow:auto; resize:none; -webkit-appearance:none}
 .form-textarea textarea.error {border-color:#ff411b}
 .form-textarea textarea:focus {border-color:#5c9015}
 
 .form-hint {padding:2px 0 0 20px; color:#808080}
-.form-field label.error{color:#f00; padding:2px 0 0 20px}
+.form-field label.error {color:#f00; padding:2px 0 0 20px}
 
 .form-checkbox {float:left; padding:0 0 0 27px; position:relative; line-height:17px; cursor:pointer; margin:8px 15px 8px 0; color:#000}
 .form-checkbox span {display:block; position:absolute; left:0; top:0; width:17px; height:17px; overflow:hidden; background:url(../images/checkbox.png)}
@@ -606,3 +608,18 @@ h2+.press-item-source {margin:-34px 0 30px 0}
 .press-ctrl:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
 .press-ctrl .press-item-source {float:left; padding:0}
 .social-likes {float:right}
+
+.top-back-calendar {float:right; text-transform:uppercase; font:15px/20px P22UndergroundCYProBook, sans-serif; padding:13px 0 0 0}
+
+.add-event .form-label {width:160px}
+.add-event .form-required-text {float:left; padding:10px 0 0 160px; margin:0}
+.add-event .form-submit {float:right; margin:0}
+
+.form-photo {float:left; width:79px; height:79px; position:relative; overflow:hidden; border-radius:2px; margin:0 0 0 11px}
+.form-photo img {border-radius:2px; width:100%; height:100%}
+.form-photo:first-child {margin:0}
+.form-photo-add {display:block; width:79px; height:79px; border-radius:2px; background:#8cc63e url(../images/photo-add.png) no-repeat 18px 22px}
+.form-photo-add:hover {background-color:#b1e46c}
+.form-photo-add:active {background-color:#87db15}
+#newPhotoForm {position:absolute; left:-100000px}
+.form-photo-loading {display:block; width:79px; height:79px; border-radius:2px; background:#8cc63e url(../images/photo-loader.gif) no-repeat center}

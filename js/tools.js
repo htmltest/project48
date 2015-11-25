@@ -83,6 +83,8 @@ var sliderTimer     = null;
 
         $('.form-select select').chosen({disable_search: true});
 
+        $('.form-input-date input').datepicker();
+
         $('form').each(function() {
             $(this).validate({
                 ignore: '',
@@ -385,6 +387,32 @@ var sliderTimer     = null;
                 }
             });
         }
+
+        $(document).on('click', '.form-photo-add', function(e) {
+            $('input[name="newPhoto"]').click();
+            e.preventDefault();
+        });
+
+        $('input[name="newPhoto"]').change(function() {
+            var options = {
+                success: function(data) {
+                    if (data.status == 1) {
+                        $('.form-photo-loading').parent().html('<img src="' + data.pic + '" alt="" />');
+                        $('.form-photo:last').show();
+                    } else {
+                        alert(data.message, 'Ошибка');
+                    }
+                },
+                url:        '/ajax/newAvatar.php',
+                type:       'post',
+                dataType:   'json',
+                clearForm:  true,
+                resetForm:  true
+            };
+            $('.form-photo:last').hide();
+            $('<div class="form-photo"><div class="form-photo-loading"></div></div>').insertBefore('.form-photo:last');
+            $('input[name="newPhoto"]').parent().ajaxSubmit(options);
+        });
 
     });
 
