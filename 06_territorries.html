@@ -41,6 +41,7 @@
                     <a href="#" class="panel-menu-link"></a>
                     <a href="#" class="user-link"></a>
                     <div class="header-search">
+                        <a href="#" class="header-search-mobile"></a>
                         <form action="#" method="post">
                             <div class="header-search-input"><input type="text" name="search" value="" placeholder="поиск по сайту" /></div>
                             <div class="header-search-submit"><input type="submit" value="" /></div>
@@ -71,6 +72,7 @@
                 <a href="#" class="menu-link"></a>
                 <a href="#" class="user-link"></a>
                 <div class="header-search">
+                    <a href="#" class="header-search-mobile"></a>
                     <form action="#" method="post">
                         <div class="header-search-input"><input type="text" name="search" value="" placeholder="поиск по сайту" /></div>
                         <div class="header-search-submit"><input type="submit" value="" /></div>
@@ -89,6 +91,8 @@
                 var myMap;
 
                 function init () {
+                    $('.territory').height($(window).height() - $('header').height());
+
                     myMap = new ymaps.Map('map', {
                         center: [56.136, 40.390],
                         zoom: 11,
@@ -253,6 +257,7 @@
 
             <!-- territory filter -->
             <div class="territory-filter">
+                <a href="#" class="territory-filter-close" rel="Открыть фильтр">Скрыть фильтр</a>
                 <form action="#" method="post">
                     <div class="form-select">
                         <select name="territory">

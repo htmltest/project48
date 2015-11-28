@@ -81,7 +81,7 @@ var sliderTimer     = null;
             email: 'Введен некорректный e-mail'
         });
 
-        $('.form-select select').chosen({disable_search: true});
+        $('.form-select select').chosen({disable_search: true, no_results_text: 'Нет результатов'});
 
         $('.form-input-date input').datepicker();
 
@@ -90,7 +90,7 @@ var sliderTimer     = null;
                 ignore: '',
                 invalidHandler: function(form, validatorcalc) {
                     validatorcalc.showErrors();
-                    $('.form-file').each(function() {
+                    $('.form-file, .form-checkbox').each(function() {
                         var curField = $(this);
                         if (curField.find('label.error').length > 0) {
                             curField.after(curField.find('label.error').clone());
@@ -319,7 +319,7 @@ var sliderTimer     = null;
                 } else if (curMonthLeft + curMonthWidth <= curContainerLeft +  curContainerWidth / 2) {
                     curMonth.find('.events-month-title div').animate({'left': curMonthWidth - curMonth.find('.events-month-title div').width() - 10});
                 } else {
-                    curMonth.find('.events-month-title div').animate({'left': -curMonthLeft + (curContainerWidth - curMonth.find('.events-month-title div').width() / 2)});
+                    curMonth.find('.events-month-title div').animate({'left': curContainerLeft - curMonthLeft + ((curContainerWidth - curMonth.find('.events-month-title div').width()) / 2)});
                 }
             });
             curSlider.find('.events-list').animate({'left': curLeft, 'margin-left': 0});
@@ -353,7 +353,7 @@ var sliderTimer     = null;
                 } else if (curMonthLeft + curMonthWidth <= curContainerLeft +  curContainerWidth / 2) {
                     curMonth.find('.events-month-title div').animate({'left': curMonthWidth - curMonth.find('.events-month-title div').width() - 10});
                 } else {
-                    curMonth.find('.events-month-title div').animate({'left': -curMonthLeft + (curContainerWidth - curMonth.find('.events-month-title div').width() / 2)});
+                    curMonth.find('.events-month-title div').animate({'left': curContainerLeft - curMonthLeft + ((curContainerWidth - curMonth.find('.events-month-title div').width()) / 2)});
                 }
             });
             curSlider.find('.events-list').animate({'left': curLeft, 'margin-left': 0});
@@ -428,9 +428,125 @@ var sliderTimer     = null;
             });
         });
 
+        $('.header-search-mobile').click(function(e) {
+            $('.header-search').toggleClass('open');
+            e.preventDefault();
+        });
+
+        $('.main-teasers').each(function() {
+            var curSlider = $(this);
+            curSlider.data('curIndex', 0);
+            curSlider.data('disableAnimation', true);
+            var curHTML = '';
+            curSlider.find('.main-teaser').each(function() {
+                curHTML += '<a href="#"></a>';
+            });
+            $('.main-teasers-ctrl').html(curHTML);
+            $('.main-teasers-ctrl a:first').addClass('active');
+        });
+
+        $('.main-teasers').on('click', '.main-teasers-ctrl a', function(e) {
+            if (!$(this).hasClass('active')) {
+                window.clearTimeout(sliderTimer);
+                sliderTimer = null;
+
+                var curSlider = $('.main-teasers');
+                if (curSlider.data('disableAnimation')) {
+                    var curIndex = curSlider.data('curIndex');
+                    var newIndex = $('.main-teasers-ctrl a').index($(this));
+
+                    curSlider.data('curIndex', newIndex);
+                    curSlider.data('disableAnimation', false);
+
+                    curSlider.find('.main-teasers-ctrl a.active').removeClass('active');
+                    curSlider.find('.main-teasers-ctrl a').eq(newIndex).addClass('active');
+
+                    curSlider.find('.main-teaser').eq(curIndex).fadeOut(function() {
+                        curSlider.find('.main-teaser').eq(newIndex).fadeIn(function() {
+                            curSlider.data('disableAnimation', true);
+                        });
+                    });
+                }
+            }
+
+            e.preventDefault();
+        });
+
+        $('.filter-name').click(function() {
+            var curBlock = $(this).parent();
+            if (curBlock.hasClass('filter-open')) {
+                curBlock.removeClass('filter-open');
+            } else {
+                $('.filter-open').removeClass('filter-open');
+                curBlock.addClass('filter-open');
+            }
+        });
+
+        $(document).click(function(e) {
+            if ($(e.target).parents().filter('.filter-left').length == 0 && $(e.target).parents().filter('.filter-right').length == 0) {
+                $('.filter-open').removeClass('filter-open');
+            }
+        });
+
+        $('.similars').each(function() {
+            var curSlider = $(this);
+            curSlider.data('curIndex', 0);
+            curSlider.data('disableAnimation', true);
+            var curHTML = '';
+            curSlider.find('.similar').each(function() {
+                curHTML += '<a href="#"></a>';
+            });
+            $('.similars-ctrl').html(curHTML);
+            $('.similars-ctrl a:first').addClass('active');
+        });
+
+        $('.similars').on('click', '.similars-ctrl a', function(e) {
+            if (!$(this).hasClass('active')) {
+                window.clearTimeout(sliderTimer);
+                sliderTimer = null;
+
+                var curSlider = $('.similars');
+                if (curSlider.data('disableAnimation')) {
+                    var curIndex = curSlider.data('curIndex');
+                    var newIndex = $('.similars-ctrl a').index($(this));
+
+                    curSlider.data('curIndex', newIndex);
+                    curSlider.data('disableAnimation', false);
+
+                    curSlider.find('.similars-ctrl a.active').removeClass('active');
+                    curSlider.find('.similars-ctrl a').eq(newIndex).addClass('active');
+
+                    curSlider.find('.similar').eq(curIndex).fadeOut(function() {
+                        curSlider.find('.similar').eq(newIndex).fadeIn(function() {
+                            curSlider.data('disableAnimation', true);
+                        });
+                    });
+                }
+            }
+
+            e.preventDefault();
+        });
+
+        $('.territory-filter-close').click(function(e) {
+            var curLink = $(this);
+            var curText = curLink.html();
+            curLink.html(curLink.attr('rel'));
+            curLink.attr('rel', curText);
+            $('.territory-filter').toggleClass('close');
+            e.preventDefault();
+        });
+
     });
 
     $(window).bind('load resize', function() {
+        $('.main-teaser').stop(true, true).removeAttr('style');
+        $('.main-teasers').data('curIndex', 0);
+        $('.main-teasers').data('disableAnimation', true);
+
+        $('.similar').stop(true, true).removeAttr('style');
+        $('.similars').data('curIndex', 0);
+        $('.similars').data('disableAnimation', true);
+
         $('.articles').each(function() {
             var curList = $('.articles');
             curList.find('.article-text').css({'min-height': 0 + 'px'});
@@ -510,7 +626,7 @@ var sliderTimer     = null;
                 } else if (curMonthLeft + curMonthWidth <= curContainerLeft +  curContainerWidth / 2) {
                     curMonth.find('.events-month-title div').css({'left': curMonthWidth - curMonth.find('.events-month-title div').width() - 10});
                 } else {
-                    curMonth.find('.events-month-title div').css({'left': -curMonthLeft + (curContainerWidth - curMonth.find('.events-month-title div').width() / 2)});
+                    curMonth.find('.events-month-title div').css({'left': curContainerLeft - curMonthLeft + ((curContainerWidth - curMonth.find('.events-month-title div').width()) / 2)});
                 }
             });
         });
