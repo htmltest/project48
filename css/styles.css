@@ -220,9 +220,11 @@ header {background:#fff}
 .side-menu > ul > li:before {display:none}
 .side-menu > ul > li > ul {margin:10px 0 0 0; padding:0; list-style:none; font:12px/15px P22UndergroundCYProBook, sans-serif; border-bottom:1px solid #e1e1e1}
 .side-menu > ul > li > ul > li {margin:0; padding:0; border-top:1px solid #e1e1e1}
+.side-menu > ul > li > ul > li:first-child {border-top:none}
+.side-menu > ul > li > a+ul > li:first-child {border-top:1px solid #e1e1e1}
 .side-menu > ul > li > ul > li.active {font-family:P22UndergroundCYProMedium, sans-serif}
 .side-menu > ul > li > ul > li:before {display:none}
-.side-menu > ul > li > ul > li > a {display:block; color:#000; padding:15px 20px 9px 20px; margin:-1px -20px; border-radius:20px; position:relative}
+.side-menu > ul > li > ul > li > a {display:block; color:#000; padding:15px 20px 9px 20px; margin:0 -20px; border-radius:20px; position:relative}
 .side-menu > ul > li > ul > li > a:hover,
 .side-menu > ul > li > ul > li.active > a {text-decoration:none; background:#8cc63e; z-index:2}
 
@@ -939,3 +941,31 @@ h2+.press-item-source {margin:-34px 0 30px 0}
 .search-event .events-detail-info-item {padding:3px 0 2px 20px}
 .search-event .events-detail-info-time {background:url(../images/events-detail-info-time-min.png) no-repeat left top}
 .search-event .events-detail-info-place {background:url(../images/events-detail-info-place-min.png) no-repeat 1px top}
+
+.team-row {border-top:1px solid #e1e1e1; padding:30px 0 10px 0}
+h2+.team-row {border-top:none; padding-top:0}
+.team-row:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
+.team-photo {float:left; width:140px; line-height:0}
+.team-container {margin:0 0 0 160px}
+.team-container h3 {margin-top:3px; margin-bottom:0}
+.team-post {font-style:italic}
+
+@media (max-width:480px) {
+    .team-photo {text-align:center; float:none}
+    .team-container {margin:0}
+}
+
+.contacts-cols-inner {font-size:0; line-height:0; letter-spacing:-1px}
+.contacts-col {display:inline-block; width:100%; vertical-align:top; box-sizing:border-box; padding:0 0 30px 0; letter-spacing:0; font-size:14px; line-height:20px; border-bottom:1px solid #e1e1e1}
+.contacts-cols-all .contacts-col {width:50%; padding:0 10px 30px 0; border-bottom:none}
+.contacts-cols-all .contacts-col:nth-child(even) {padding:0 0 30px 10px}
+.contacts-cols-all .contacts-col+.contacts-col+.contacts-col {border-top:1px solid #e1e1e1}
+.contacts-col table {width:100%; border-collapse:collapse; border-bottom:none; margin:0}
+.contacts-col table td {vertical-align:top; padding:0 0 10px 0; border:none; width:100%}
+.contacts-col table td:first-child {color:#808080; padding:0 20px 10px 0; white-space:nowrap; width:auto}
+
+@media (max-width:960px) {
+    .contacts-cols-all .contacts-col {width:100%; padding:0 0 30px 0}
+    .contacts-cols-all .contacts-col:nth-child(even) {padding:0 0 30px 0}
+    .contacts-cols-all .contacts-col+.contacts-col {border-top:1px solid #e1e1e1}
+}
