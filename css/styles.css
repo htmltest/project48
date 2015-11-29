@@ -969,3 +969,70 @@ h2+.team-row {border-top:none; padding-top:0}
     .contacts-cols-all .contacts-col:nth-child(even) {padding:0 0 30px 0}
     .contacts-cols-all .contacts-col+.contacts-col {border-top:1px solid #e1e1e1}
 }
+
+.tours {font-size:0; line-height:0; letter-spacing:-1px; margin:0 -10px}
+.tour {display:inline-block; vertical-align:top; width:25%; box-sizing:border-box; padding:20px 10px 0 10px}
+.tour a {color:#000; background:#fff; display:block; padding:20px}
+.tour-photo img {width:100%}
+.tour-name {font:15px/20px P22UndergroundCYProDemi, sans-serif; text-transform:uppercase; letter-spacing:0; padding:24px 0 0 0}
+
+@media (max-width:960px) {
+    .tour {width:33.33%}
+}
+
+@media (max-width:600px) {
+    .tour {width:50%}
+}
+
+.gallery-tours {margin:50px -10px; font-size:0; line-height:0; letter-spacing:-1px}
+.gallery-item {display:inline-block; vertical-align:top; width:25%; box-sizing:border-box; padding:20px 10px 0 10px}
+.gallery-item-photo {background:#fff; display:block; padding:20px}
+.gallery-item-photo img {width:100%}
+.gallery-item-name {display:none}
+
+@media (max-width:960px) {
+    .gallery-tours {margin:50px -10px}
+    .gallery-item {background:#fff; width:100%; display:block}
+    .gallery-item-name {display:block; font:15px/20px P22UndergroundCYProDemi, sans-serif; text-transform:uppercase; letter-spacing:0; padding:0 20px}
+}
+
+.item-gallery {position:fixed; left:-9999px; top:0; width:100%; height:100%; z-index:99997; overflow:auto; background:rgba(4, 19, 5, .9)}
+.item-gallery-open {left:0}
+.item-gallery-container {position:relative; width:940px; margin:0 auto}
+.item-gallery-group {font:15px/20px P22UndergroundCYProDemi, sans-serif; text-transform:uppercase; text-align:center; color:#fff; padding:50px 0 0 0}
+.item-gallery-title {font:15px/20px P22UndergroundCYProBook, sans-serif; text-transform:uppercase; text-align:center; color:#8cc63e; padding:2px 0 23px 0}
+.item-gallery-big {text-align:center; font-size:0; line-height:0; position:relative}
+.item-gallery-big strong {visibility:hidden; position:relative; display:inline-block; vertical-align:middle}
+.item-gallery-big strong img {vertical-align:top}
+.item-gallery-prev,
+.item-gallery-next {display:block; width:80px; height:100%; position:absolute; top:0; background:rgba(4, 19, 5, .9); opacity:0}
+.item-gallery-prev:hover,
+.item-gallery-next:hover {opacity:1}
+.item-gallery-prev span,
+.item-gallery-next span {display:block; width:28px; height:49px; position:absolute; left:50%; top:50%; margin:-25px 0 0 -14px; background:url(../images/item-gallery-arrows.png)}
+.item-gallery-prev {left:0}
+.item-gallery-next {right:0}
+.item-gallery-next span {background-position:-28px top}
+.item-gallery-close {display:block; position:absolute; right:-15px; top:-15px; width:29px; height:29px; background:#8cc63e url(../images/search-line-close.png) no-repeat center; border-radius:15px}
+.item-gallery-close:hover {background-color:#b1e46c}
+.item-gallery-close:active {background-color:#87db15}
+.item-gallery-big img {vertical-align:middle; position:relative; box-shadow:0 0 13px rgba(0, 0, 0, .2)}
+.item-gallery-list {width:936px; line-height:0; position:relative; overflow:hidden}
+.item-gallery-list ul {position:relative; margin:0; padding:30px 0; list-style:none; width:9999px}
+.item-gallery-list ul:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
+.item-gallery-list ul li {float:left; margin:0 1px; padding:3px; position:relative}
+.item-gallery-list ul li:before {display:none}
+.item-gallery-list ul li.active {padding:0; border:3px solid #8cc63e}
+.item-gallery-list-prev,
+.item-gallery-list-next {position:absolute; top:33px; display:block; width:70px; height:70px; background:#8cc63e}
+.item-gallery-list-prev {left:4px}
+.item-gallery-list-next {right:4px}
+.item-gallery-list-prev:hover,
+.item-gallery-list-next:hover {background:#b1e46c}
+.item-gallery-list-prev:active,
+.item-gallery-list-next:active {background:#87db15}
+.item-gallery-list-prev span,
+.item-gallery-list-next span {display:block; width:13px; height:22px; position:absolute; left:50%; top:50%; margin:-11px 0 0 -7px; background:url(../images/item-gallery-list-arrows.png)}
+.item-gallery-list-next span {background-position:-13px top}
+.item-gallery-loading {position:absolute; left:-15px; top:-15px; padding:15px; width:100%; height:100%; background:rgba(0, 0, 0, .2) url(../images/gallery-loading.gif) no-repeat center}
+.item-gallery-load {position:absolute; left:-9999px; top:-9999px; visibility:hidden}
