@@ -408,15 +408,9 @@ footer {background:#8cc63e}
     .slider-text {width:auto}
 }
 
-.main {background:#fff url(../images/main-bg.png) no-repeat center top; height:940px; position:relative; z-index:3}
-.main-container {max-width:940px; padding:0 10px; margin:0 auto}
+.main {position:relative; z-index:3}
 
-@media (max-width:960px) {
-    .main {background:#fff url(../images/main-bg-mobile.png) no-repeat center bottom; height:auto}
-    .main-container {padding:0 30px}
-}
-
-.main-list {margin:0 -10px; font-size:0; line-height:0; letter-spacing:-1px; padding:40px 0 0 0}
+.main-list {max-width:960px; margin:0 auto; font-size:0; line-height:0; letter-spacing:-1px; padding:40px 0 0 0}
 .main-list-item {display:inline-block; vertical-align:top; width:33.33%; padding:0 10px; box-sizing:border-box; text-transform:uppercase; color:#fff}
 .main-list-item-container {padding:0 20px; height:440px; background-color:#000; background-position:center; background-repeat:no-repeat; position:relative; background-size:cover}
 .main-list-item-1 .main-list-item-container {background-image:url(../images/main-list-item-1.jpg)}
@@ -440,7 +434,7 @@ footer {background:#8cc63e}
     .main-list-item-name {font-size:20px; line-height:20px; padding:32px 0 0 0}
 }
 
-.main-apps {padding:20px 0 0 0}
+.main-apps {max-width:940px; margin:0 auto; padding:20px 0 0 0}
 .main-apps:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
 .main-apps-img {float:left; width:358px; height:440px; background:url(../images/main-apps.png); margin:0 -81px 0 -57px}
 .main-apps-item {float:left; width:220px; margin:80px 0 0 20px}
@@ -477,43 +471,65 @@ footer {background:#8cc63e}
 }
 
 .main-tabs {float:left; width:100%; margin:-70px 0 0 0; height:70px}
-.main-tabs ul {margin:0 -10px; padding:0; list-style:none}
+.main-tabs ul {padding:0; list-style:none; max-width:960px; margin:0 auto}
 .main-tabs li {float:left; margin:0; padding:10px 10px 0 10px; box-sizing:border-box; width:33.33%}
 .main-tabs li.active {padding-top:0}
 .main-tabs li:before {display:none}
 .main-tabs li a {display:block; position:relative; text-transform:uppercase; color:#fff; text-align:center; height:50px}
 .main-tabs li.active a {height:60px; background:#fff; border-radius:25px 25px 0 0; color:#000; padding-top:10px}
-.main-tabs li.active a {background:#e2f1cf}
-.main-tabs li+li.active a {background:#e2f1cf}
+.main-tabs li.active a {background:#8cc63e}
+.main-tabs li+li.active a {background:#98cc52 url(../images/main-tabs-2.png) no-repeat left bottom}
 .main-tabs li+li+li.active a {background:#fff url(../images/main-tabs-3.png) no-repeat}
 .main-tabs li a:hover {text-decoration:none}
 .main-tabs li a:before {content:""; display:block; position:absolute; left:0; top:0; width:100%; height:100%; box-sizing:border-box; border:1px solid #fff; border-radius:25px; opacity:.25}
 .main-tabs li a:hover:before {opacity:1}
 .main-tabs li.active a:before {left:-23px; top:auto; bottom:0; width:24px; height:24px; border:none; border-radius:0; opacity:1; background:url(../images/main-tabs-corners.png)}
-.main-tabs li.active a:before {background-position:left -24px}
-.main-tabs li+li.active a:before {background-position:left -24px}
+.main-tabs li.active a:before {background-position:left -72px}
+.main-tabs li+li.active a:before {background-position:left -48px}
 .main-tabs li+li+li.active a:before {background-position:left -24px}
-.main-tabs li.active a:after {content:""; display:block; position:absolute; right:-24px; bottom:0; width:24px; height:24px; background:url(../images/main-tabs-corners.png) -24px top}
-.main-tabs li.active a:after {background-position:-24px -24px}
-.main-tabs li+li.active a:after {background-position:-24px -24px}
+.main-tabs li.active a:after {content:""; display:block; position:absolute; right:-23px; bottom:0; width:24px; height:24px; background:url(../images/main-tabs-corners.png) -24px top}
+.main-tabs li.active a:after {background-position:-24px -72px}
+.main-tabs li+li.active a:after {background-position:-24px -48px}
+.main-tabs li+li+li.active a:after {background-position:-24px top}
 .main-tabs-text-1 {font:15px/18px P22UndergroundCYProHeavy, sans-serif; position:relative; padding:11px 0 0 0}
 .main-tabs-text-2 {font:12px/18px P22UndergroundCYProBook, sans-serif; position:relative}
 
 @media (max-width:960px) {
     .main-tabs-text-1 {font-size:12px}
-    .main-tabs li.active a,
-    .main-tabs li+li.active a,
+    .main-tabs li.active a {background:#8cc63e}
+    .main-tabs li+li.active a {background:#98cc52}
     .main-tabs li+li+li.active a {background:#fff}
-    .main-tabs li.active a:before,
-    .main-tabs li+li.active a:before,
+    .main-tabs li.active a:before {background-position:left -72px}
+    .main-tabs li+li.active a:before {background-position:left -48px}
     .main-tabs li+li+li.active a:before {background-position:left top}
-    .main-tabs li.active a:after,
-    .main-tabs li.active a:after,
-    .main-tabs li+li.active a:after {background-position:-24px top}
+    .main-tabs li.active a:after {background-position:-24px -72px}
+    .main-tabs li+li.active a:after {background-position:-24px -48px}
+    .main-tabs li+li+li.active a:after {background-position:-24px top}
 }
 
-.main-tabs-content {display:none}
-.main-tabs-content.active {display:block}
+.main-tabs-content {position:absolute; left:-9999px; top:-9999px; width:100%}
+.main-tabs-content.active {position:relative; left:auto; top:auto}
+.main-tabs-content-1 {background:#8cc63e}
+.main-tabs-content-2 {background:#8cc63e url(../images/main-tabs-content-2.png) no-repeat center top}
+.main-tabs-content-3 {background:#fff url(../images/main-tabs-content-3.png) no-repeat center bottom}
+
+.main-tabs-content .articles {max-width:940px; margin:0 auto; padding:23px 0 51px 0}
+.main-tabs-content .article-content {padding-top:0}
+.main-eco-photo {line-height:0; margin:0 -20px}
+.main-eco-photo img {width:100%}
+.main-tabs-content .article-text {padding:0}
+.main-tabs-content .article-tags {padding-bottom:21px}
+
+@media (max-width:960px) {
+    .main-tabs-content-2 {background:#98cc52}
+    .main-tabs-content-2 .articles-list {margin-left:0; margin-right:0}
+    .main-tabs-content-3 {background:#fff url(../images/main-tabs-content-3-mobile.png) no-repeat center bottom}
+    .main-tabs-content .article {width:33.33%}
+}
+
+@media (max-width:768px) {
+    .main-tabs-content .article {width:50%}
+}
 
 .panel {display:none; position:fixed; left:0; top:0; width:100%; height:100%; background:#8cc63e; z-index:10}
 .panel.open {display:block}
@@ -581,6 +597,7 @@ nav ul li a {color:#fff}
 
 .search-line {display:none; background:#8cc63e; padding:5px 10px}
 .search-line.open {display:block}
+.main-tabs-content-1 .search-line {display:block; padding:11px 10px 18px 10px}
 .search-line form {margin:0 auto; max-width:940px; padding:0; background:#fff; border-radius:15px; height:30px; box-shadow:inset 0 3px 2px rgba(12, 10, 5, .06)}
 .search-line-submit {float:left; padding:10px 0 0 20px}
 .search-line-submit input {display:block; width:12px; height:12px; border:none; background:url(../images/header-search.png); margin:0; padding:0; outline:none; cursor:pointer; -webkit-appearance:none}
@@ -866,6 +883,8 @@ h2+.press-item-source {margin:-34px 0 30px 0}
 .territory:after {content:""; display:block; width:100%; height:1px; position:absolute; left:0; top:-1px; background:#fff; box-shadow:0 0 5px rgba(12, 10, 5, .18)}
 
 #map.map-territory {position:absolute; left:0; top:0; width:100%; height:100%}
+.main-tabs-content-1 .territory {height:660px}
+.main-tabs-content-1 #map.map-territory {height:660px}
 
 .popover {width:260px; padding:20px; position:relative; background:#fff; box-shadow:0 0 5px rgba(12, 10, 5, .18); z-index:999}
 .popover-territory {color:#000}
@@ -891,6 +910,7 @@ h2+.press-item-source {margin:-34px 0 30px 0}
 }
 
 .territory-filter {position:absolute; left:40px; top:100px; width:300px; padding:10px; background:#fff; box-shadow:0 0 5px rgba(12, 10, 5, .18); border-radius:2px}
+.main-tabs-content-1 .territory-filter {top:40px}
 .territory-filter form {margin:0; padding:0}
 .territory-filter-list {max-height:450px; margin:20px 0 0 0; position:relative; overflow:hidden}
 .territory-filter-list-content {width:280px}

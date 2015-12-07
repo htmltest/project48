@@ -791,6 +791,31 @@ var sliderTimer     = null;
             });
         });
 
+        $('.main-tabs-content-2').each(function() {
+            $(this).find('.articles').each(function() {
+                var curList = $(this);
+                curList.find('.article-tags').css({'min-height': 0 + 'px'});
+
+                curList.find('.article-tags').each(function() {
+                    var curBlock = $(this);
+                    var curHeight = curBlock.height();
+                    var curTop = curBlock.offset().top;
+
+                    curList.find('.article-tags').each(function() {
+                        var otherBlock = $(this);
+                        if (otherBlock.offset().top == curTop) {
+                            var newHeight = otherBlock.height();
+                            if (newHeight > curHeight) {
+                                curBlock.css({'min-height': newHeight + 'px'});
+                            } else {
+                                otherBlock.css({'min-height': curHeight + 'px'});
+                            }
+                        }
+                    });
+                });
+            });
+        });
+
         $('.similars').each(function() {
             var curList = $('.similars');
             curList.find('.similar-content').css({'min-height': 0 + 'px'});

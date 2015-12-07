@@ -136,26 +136,426 @@
                 <div class="main-tabs-container">
 
                     <!-- main tabs content -->
-                    <div class="main-tabs-content">
-                        <!-- main list -->
-                        <div class="main-list">
-                            <div class="main-list-item main-list-item-3">
-                                <div class="main-list-item-container">
-                                    <div class="main-list-item-type"><a href="#">Экскурсии</a></div>
-                                    <div class="main-list-item-name"><a href="#">Прогулки по&nbsp;зеленому городу</a></div>
-                                    <div class="main-list-item-links">
-                                        <a href="#" class="btn"><img src="images/main-list-icon-4.png" alt="" width="21" height="21" /> Заказать экскурсию</a>
-                                        <a href="#" class="btn"><img src="images/main-list-icon-5.png" alt="" width="17" height="22" /> участвовать в мониторинге</a>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="main-tabs-content main-tabs-content-1">
+                        <!-- search line -->
+                        <div class="search-line">
+                            <form action="#" method="post">
+                                <div class="search-line-submit"><input type="submit" value="" /></div>
+                                <div class="search-line-close"><a href="#"></a></div>
+                                <div class="search-line-input"><input type="text" name="search" value="" placeholder="поиск по территориям" /></div>
+                            </form>
                         </div>
-                        <!-- main list END -->
+                        <!-- search line END -->
+
+                        <!-- territory -->
+                        <div class="territory">
+                            <div class="map-territory" id="map"></div>
+                            <script src="http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+                            <script type="text/javascript">
+                                ymaps.ready(init);
+
+                                var myMap;
+
+                                function init () {
+                                    myMap = new ymaps.Map('map', {
+                                        center: [56.136, 40.390],
+                                        zoom: 11,
+                                        controls: []
+                                    });
+                                    myMap.behaviors.disable('scrollZoom');
+
+                                    // Создание макета балуна
+                                    var MyBalloonLayout = ymaps.templateLayoutFactory.createClass(
+                                        '<div class="popover popover-territory"><div class="arrow"></div>' +
+                                            '$[[options.contentLayout]]' +
+                                            '</div>', {
+                                            /**
+                                             * Строит экземпляр макета на основе шаблона и добавляет его в родительский HTML-элемент.
+                                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#build
+                                             * @function
+                                             * @name build
+                                             */
+                                            build: function () {
+                                                this.constructor.superclass.build.call(this);
+
+                                                this._$element = $('.popover', this.getParentElement());
+
+                                                this.applyElementOffset();
+                                            },
+
+                                            /**
+                                             * Удаляет содержимое макета из DOM.
+                                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#clear
+                                             * @function
+                                             * @name clear
+                                             */
+                                            clear: function () {
+                                                this._$element.find('.close')
+                                                    .off('click');
+
+                                                this.constructor.superclass.clear.call(this);
+                                            },
+
+                                            /**
+                                             * Метод будет вызван системой шаблонов АПИ при изменении размеров вложенного макета.
+                                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+                                             * @function
+                                             * @name onSublayoutSizeChange
+                                             */
+                                            onSublayoutSizeChange: function () {
+                                                MyBalloonLayout.superclass.onSublayoutSizeChange.apply(this, arguments);
+
+                                                if(!this._isElement(this._$element)) {
+                                                    return;
+                                                }
+
+                                                this.applyElementOffset();
+
+                                                this.events.fire('shapechange');
+                                            },
+
+                                            /**
+                                             * Сдвигаем балун, чтобы "хвостик" указывал на точку привязки.
+                                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+                                             * @function
+                                             * @name applyElementOffset
+                                             */
+                                            applyElementOffset: function () {
+                                                this._$element.css({
+                                                    left: 28,
+                                                    top: -35
+                                                });
+                                            },
+
+                                            /**
+                                             * Закрывает балун при клике на крестик, кидая событие "userclose" на макете.
+                                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+                                             * @function
+                                             * @name onCloseClick
+                                             */
+                                            onCloseClick: function (e) {
+                                                e.preventDefault();
+
+                                                this.events.fire('userclose');
+                                            },
+
+                                            /**
+                                             * Используется для автопозиционирования (balloonAutoPan).
+                                             * @see http://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ILayout.xml#getClientBounds
+                                             * @function
+                                             * @name getClientBounds
+                                             * @returns {Number[][]} Координаты левого верхнего и правого нижнего углов шаблона относительно точки привязки.
+                                             */
+                                            getShape: function () {
+                                                if(!this._isElement(this._$element)) {
+                                                    return MyBalloonLayout.superclass.getShape.call(this);
+                                                }
+
+                                                var position = this._$element.position();
+
+                                                return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
+                                                    [position.left, position.top], [
+                                                        position.left + this._$element[0].offsetWidth,
+                                                        position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight
+                                                    ]
+                                                ]));
+                                            },
+
+                                            /**
+                                             * Проверяем наличие элемента (в ИЕ и Опере его еще может не быть).
+                                             * @function
+                                             * @private
+                                             * @name _isElement
+                                             * @param {jQuery} [element] Элемент.
+                                             * @returns {Boolean} Флаг наличия.
+                                             */
+                                            _isElement: function (element) {
+                                                return element && element[0] && element.find('.arrow')[0];
+                                            }
+                                        });
+
+                                    // Создание вложенного макета содержимого балуна.
+                                    var MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+                                        '<div class="popover-img">$[properties.balloonImg]</div>' +
+                                        '<h3>$[properties.balloonHeader]</h3>' +
+                                        '<div class="popover-text">$[properties.balloonContent]</div>' +
+                                        '<div class="popover-link"><a href="$[properties.balloonLink]" class="btn">Подробнее &rarr;</a></div>'
+                                    );
+
+                                    var myGeocoder = ymaps.geocode('Москва, Природно-исторический парк «Останкино»');
+                                    myGeocoder.then(
+                                        function (res) {
+                                            var coords = res.geoObjects.get(0).geometry.getCoordinates();
+                                            myPlacemark = new ymaps.Placemark(coords, {
+                                                balloonImg: '<img src="files/map-photo.jpg" alt="" width="260" height="107" />',
+                                                balloonHeader: 'Природно-исторический парк «Останкино»',
+                                                balloonContent: 'Природно-исторический парк «Останкино» находится на северо-востоке столицы. В состав природно-исторического парка вошли Главный ботанический сад Российской Академии Наук',
+                                                balloonLink: '#',
+                                            }, {
+                                                balloonLayout: MyBalloonLayout,
+                                                balloonContentLayout: MyBalloonContentLayout,
+                                                balloonPanelMaxMapArea: 0,
+                                                balloonShadow: false,
+                                                hideIconOnBalloonOpen: false,
+                                                iconLayout: 'default#image',
+                                                iconImageHref: 'images/map-icon-2.png',
+                                                iconImageSize: [31, 31],
+                                                iconImageOffset: [-16, -16]
+                                            });
+                                            myMap.geoObjects.add(myPlacemark);
+                                            myMap.setCenter(coords);
+                                        },
+                                        function (err) {
+                                            alert('Ошибка');
+                                        }
+                                    );
+
+                                }
+                            </script>
+
+                            <!-- territory filter -->
+                            <div class="territory-filter">
+                                <a href="#" class="territory-filter-close" rel="Открыть фильтр">Скрыть фильтр</a>
+                                <form action="#" method="post">
+                                    <div class="form-select">
+                                        <select name="territory">
+                                            <option value="1" selected="selected">СВАО и Сокольники</option>
+                                            <option value="2">Измайлово и Косинский</option>
+                                            <option value="3">Кузьминки-Люблино</option>
+                                            <option value="4">Царицыно</option>
+                                            <option value="5">Битцевский лес</option>
+                                            <option value="6">Тропарево и Теплый Стан</option>
+                                            <option value="7">Долина р.Сетунь</option>
+                                            <option value="8">Москворецкий</option>
+                                            <option value="9">Тушинский и Покровское-Стрешнево</option>
+                                            <option value="10">ЗелАО</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="territory-filter-list">
+                                        <div class="territory-filter-list-content">
+                                            <!-- territory filter group -->
+                                            <div class="territory-filter-group open">
+                                                <div class="territory-filter-group-title">
+                                                    <div class="territory-filter-group-title">
+                                                        <div class="territory-filter-group-icon"></div>
+                                                        <div class="territory-filter-group-name">Спорт <span><em>5 /</em> 153</span></div>
+                                                        <div class="territory-filter-group-ctrl"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="territory-filter-group-list">
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-1.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter1" />
+                                                            Велодорожки и прокат велосипедов
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-2.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter2" checked="checked" />
+                                                            Прокат спортивного инвентаря и снаряжения
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-3.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter3" checked="checked" />
+                                                            Лыжные трассы
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-4.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter4" />
+                                                            Спортивные площадки
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- territory filter group END -->
+                                            <!-- territory filter group -->
+                                            <div class="territory-filter-group">
+                                                <div class="territory-filter-group-title">
+                                                    <div class="territory-filter-group-title">
+                                                        <div class="territory-filter-group-icon"></div>
+                                                        <div class="territory-filter-group-name">Отдых и развлечения  <span><em style="display:none">5 /</em> 352</span></div>
+                                                        <div class="territory-filter-group-ctrl"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="territory-filter-group-list">
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-1.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter7" />
+                                                            Велодорожки и прокат велосипедов
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-2.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter8" checked="checked" />
+                                                            Прокат спортивного инвентаря и снаряжения
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-3.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter9" checked="checked" />
+                                                            Лыжные трассы
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-4.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter10" />
+                                                            Спортивные площадки
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- territory filter group END -->
+
+                                            <!-- territory filter group -->
+                                            <div class="territory-filter-group open">
+                                                <div class="territory-filter-group-title">
+                                                    <div class="territory-filter-group-title">
+                                                        <div class="territory-filter-group-icon"></div>
+                                                        <div class="territory-filter-group-name">Экотуризм <span><em style="display:none">5 /</em> 112</span></div>
+                                                        <div class="territory-filter-group-ctrl"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="territory-filter-group-list">
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-5.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter5" />
+                                                            ЭПЦ
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-6.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter6" checked="checked" />
+                                                            Экскурсии
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-3.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter11" checked="checked" />
+                                                            Лыжные трассы
+                                                        </div>
+                                                    </div>
+                                                    <div class="territory-filter-item">
+                                                        <div class="territory-filter-item-icon"><div><img src="files/territory-filter-icon-4.jpg" alt="" width="30" height="30" /></div></div>
+                                                        <div class="territory-filter-item-icon-name">
+                                                            <input type="checkbox" name="filter12" />
+                                                            Спортивные площадки
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- territory filter group END -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- territory filter END -->
+                        </div>
+                        <!-- territory END -->
                     </div>
                     <!-- main tabs content END -->
 
                     <!-- main tabs content -->
-                    <div class="main-tabs-content">
+                    <div class="main-tabs-content main-tabs-content-2">
+                        <div class="articles">
+                            <div class="articles-list">
+                                <div class="article">
+                                    <div class="article-content">
+                                        <div class="main-eco-photo"><img src="files/main-eco-1.jpg" alt="" /></div>
+                                        <div class="article-text">
+                                            <div class="article-section"><a href="#">Экоцентры</a></div>
+                                            <div class="article-name">Эколого- просветительский центр «Воробьевы горы»</div>
+                                            <div class="article-anonce">Экоцентр предоставляет информацию о природном и культурном наследии Воробьевых гор, экологии Москвы, основных региональных и планетарных экологических проблемах и способах их разрешения.</div>
+                                        </div>
+                                        <div class="article-tags"><a href="#">#мосприрода</a> <a href="#">#экоцентры</a> <a href="#">#воробьевы горы</a></div>
+                                    </div>
+                                </div>
+                                <div class="article">
+                                    <div class="article-content">
+                                        <div class="main-eco-photo"><img src="files/main-eco-2.jpg" alt="" /></div>
+                                        <div class="article-text">
+                                            <div class="article-section"><a href="#">Экоцентры</a></div>
+                                            <div class="article-name">Эколого- просветительский центр «Конный двор»</div>
+                                            <div class="article-anonce">В эколого-просветительском центре «Конный двор» в природно-историческом парке «Измайлово» содержатся 11 лошадей, 2 пони и 3 козы, есть «сельский уголок» и конно-спортивная секция для детей <a href="#">http://vk.com/clubkonniydvor</a></div>
+                                        </div>
+                                        <div class="article-tags"><a href="#">#мосприрода</a> <a href="#">#экоцентры</a> <a href="#">#конный двор</a></div>
+                                    </div>
+                                </div>
+                                <div class="article">
+                                    <div class="article-content">
+                                        <div class="main-eco-photo"><img src="files/main-eco-3.jpg" alt="" /></div>
+                                        <div class="article-text">
+                                            <div class="article-section"><a href="#">Экоцентры</a></div>
+                                            <div class="article-name">Эколого- просветительский центр «Царская пасека»</div>
+                                            <div class="article-anonce">Сотрудники пасеки регулярно проводят в парке познавательные и экскурсионные программы, традиционные праздники и эколого-культурные акции, выставки рисунков, фотографий и поделок.</div>
+                                        </div>
+                                        <div class="article-tags"><a href="#">#мосприрода</a> <a href="#">#экоцентры</a> <a href="#">#царская пасека</a></div>
+                                    </div>
+                                </div>
+                                <div class="article">
+                                    <div class="article-content">
+                                        <div class="main-eco-photo"><img src="files/main-eco-4.jpg" alt="" /></div>
+                                        <div class="article-text">
+                                            <div class="article-section"><a href="#">Экоцентры</a></div>
+                                            <div class="article-name">Эколого- просветительский центр «Кузьминки»</div>
+                                            <div class="article-anonce">Эколого-просветительский центр «Кузьминки» занимается изучением и охраной флоры и фауны, экологическим просвещением и воспитанием детей, воссозданием народных традиций, обрядов и ремесел.</div>
+                                        </div>
+                                        <div class="article-tags"><a href="#">#мосприрода</a> <a href="#">#экоцентры</a> <a href="#">#кузьминки</a></div>
+                                    </div>
+                                </div>
+                                <div class="article">
+                                    <div class="article-content">
+                                        <div class="main-eco-photo"><img src="files/main-eco-5.jpg" alt="" /></div>
+                                        <div class="article-text">
+                                            <div class="article-section"><a href="#">Экоцентры</a></div>
+                                            <div class="article-name">Экологический центр «Музей природы и&nbsp;соколиной охоты»</div>
+                                            <div class="article-anonce">«Центр Соколиной охоты ВСЕ-СВОИ» ГПБУ «Мосприрода». «Всеевразийский Союз Возрождения Охотничьего Искусства» – союз людей, посвятивших себя самому сложному из искусств – соколиной охоте.</div>
+                                        </div>
+                                        <div class="article-tags"><a href="#">#мосприрода</a> <a href="#">#экоцентры</a> <a href="#">#кузьминки</a></div>
+                                    </div>
+                                </div>
+                                <div class="article">
+                                    <div class="article-content">
+                                        <div class="main-eco-photo"><img src="files/main-eco-6.jpg" alt="" /></div>
+                                        <div class="article-text">
+                                            <div class="article-section"><a href="#">Экоцентры</a></div>
+                                            <div class="article-name">Эколого- просветительский центр «Битцевский лес»</div>
+                                            <div class="article-anonce">Одна из важнейших задач экоцентра – сохранение лесных экосистем и биоразнообразия. В лесу проводятся различные экскурсии, экологическое ориентирование «Тропой загадок», лекции, занятия и мастер-классы.</div>
+                                        </div>
+                                        <div class="article-tags"><a href="#">#мосприрода</a> <a href="#">#экоцентры</a> <a href="#">#битцевский лес</a></div>
+                                    </div>
+                                </div>
+                                <div class="article">
+                                    <div class="article-content">
+                                        <div class="main-eco-photo"><img src="files/main-eco-7.jpg" alt="" /></div>
+                                        <div class="article-text">
+                                            <div class="article-section"><a href="#">Экоцентры</a></div>
+                                            <div class="article-name">Эколого- просветительский центр «Скворечник»</div>
+                                            <div class="article-anonce">«Скворечник» создан для того, чтобы стать консолидирующим центром экологических инициатив жителей районов Москвы, примыкающих территориям Битцевского леса и к зоне отдыха «Битца».</div>
+                                        </div>
+                                        <div class="article-tags"><a href="#">#мосприрода</a> <a href="#">#экоцентры</a> <a href="#">#скворечник</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- main tabs content END -->
+
+                    <!-- main tabs content -->
+                    <div class="main-tabs-content main-tabs-content-3 active">
                         <!-- main list -->
                         <div class="main-list">
                             <div class="main-list-item main-list-item-1">
@@ -178,35 +578,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- main list END -->
-                    </div>
-                    <!-- main tabs content END -->
-
-                    <!-- main tabs content -->
-                    <div class="main-tabs-content active">
-                        <!-- main list -->
-                        <div class="main-list">
-                            <div class="main-list-item main-list-item-1">
-                                <div class="main-list-item-container">
-                                    <div class="main-list-item-type"><a href="#">Библиотека Онлайн</a></div>
-                                    <div class="main-list-item-name"><a href="#">Полезные эко&nbsp;идеи и&nbsp;обучающие материалы</a></div>
-                                    <div class="main-list-item-links">
-                                        <a href="#" class="btn"><img src="images/main-list-icon-1.png" alt="" width="21" height="20" /> Найти нужный материал</a>
-                                        <a href="#" class="btn"><img src="images/btn-add.png" alt="" width="22" height="22" /> Загрузить проект</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-list-item main-list-item-2">
-                                <div class="main-list-item-container">
-                                    <div class="main-list-item-type"><a href="#">События</a></div>
-                                    <div class="main-list-item-name"><a href="#">Cамые интересные эко события Москвы</a></div>
-                                    <div class="main-list-item-links">
-                                        <a href="#" class="btn"><img src="images/main-list-icon-2.png" alt="" width="18" height="21" /> Календарь</a>
-                                        <a href="#" class="btn"><img src="images/main-list-icon-3.png" alt="" width="18" height="21" /> Добавить Событие</a>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="main-list-item main-list-item-3">
                                 <div class="main-list-item-container">
                                     <div class="main-list-item-type"><a href="#">Экскурсии</a></div>
@@ -219,47 +590,47 @@
                             </div>
                         </div>
                         <!-- main list END -->
+
+                        <div class="main-apps">
+                            <div class="main-apps-img"></div>
+                            <div class="main-apps-item">
+                                <a href="#" class="main-apps-item-link">
+                                    <div class="main-apps-icon-1"><img src="images/main-apps-icon-1.png" alt="" width="34" height="60" /></div>
+                                    <div class="main-apps-item-link-text">аудиогид<br />в твоем телефоне</div>
+                                </a>
+                                <div class="main-apps-item-text">Скачайте приложение и найдите самые интересные природные объекты Москвы</div>
+                                <div class="main-apps-mobile">
+                                    <a href="#" class="main-apps-appstore"></a>
+                                    <a href="#" class="main-apps-googleplay"></a>
+                                </div>
+                            </div>
+                            <div class="main-apps-item">
+                                <a href="#" class="main-apps-item-link">
+                                    <div class="main-apps-icon-2"><img src="images/main-apps-icon-2.png" alt="" width="63" height="61" /></div>
+                                    <div class="main-apps-item-link-text">3D Тур</div>
+                                </a>
+                                <div class="main-apps-item-text">Погрузитесь в познавательное виртуальное приключение прямо сейчас.</div>
+                                <div class="main-apps-item-text-2">Внимание, включен звук!</div>
+                            </div>
+                            <div class="main-apps-item">
+                                <a href="#" class="main-apps-item-link">
+                                    <div class="main-apps-icon-3"><img src="images/main-apps-icon-3.png" alt="" width="85" height="68" /></div>
+                                    <div class="main-apps-item-link-text">Сообщество</div>
+                                </a>
+                                <div class="main-apps-item-text">Выберите проект,<br />чтобы исследовать природу Москвы вместе с нами</div>
+                            </div>
+                        </div>
+
+                        <div class="main-apps-item-text-mobile">Скачайте приложение и найдите самые интересные<br />природные объекты Москвы</div>
+                        <div class="main-apps-mobile-mobile">
+                            <a href="#" class="main-apps-appstore-mobile"></a>
+                            <a href="#" class="main-apps-googleplay-mobile"></a>
+                        </div>
                     </div>
                     <!-- main tabs content END -->
 
                 </div>
                 <!-- main tabs container END -->
-
-                <div class="main-apps">
-                    <div class="main-apps-img"></div>
-                    <div class="main-apps-item">
-                        <a href="#" class="main-apps-item-link">
-                            <div class="main-apps-icon-1"><img src="images/main-apps-icon-1.png" alt="" width="34" height="60" /></div>
-                            <div class="main-apps-item-link-text">аудиогид<br />в твоем телефоне</div>
-                        </a>
-                        <div class="main-apps-item-text">Скачайте приложение и найдите самые интересные природные объекты Москвы</div>
-                        <div class="main-apps-mobile">
-                            <a href="#" class="main-apps-appstore"></a>
-                            <a href="#" class="main-apps-googleplay"></a>
-                        </div>
-                    </div>
-                    <div class="main-apps-item">
-                        <a href="#" class="main-apps-item-link">
-                            <div class="main-apps-icon-2"><img src="images/main-apps-icon-2.png" alt="" width="63" height="61" /></div>
-                            <div class="main-apps-item-link-text">3D Тур</div>
-                        </a>
-                        <div class="main-apps-item-text">Погрузитесь в познавательное виртуальное приключение прямо сейчас.</div>
-                        <div class="main-apps-item-text-2">Внимание, включен звук!</div>
-                    </div>
-                    <div class="main-apps-item">
-                        <a href="#" class="main-apps-item-link">
-                            <div class="main-apps-icon-3"><img src="images/main-apps-icon-3.png" alt="" width="85" height="68" /></div>
-                            <div class="main-apps-item-link-text">Сообщество</div>
-                        </a>
-                        <div class="main-apps-item-text">Выберите проект,<br />чтобы исследовать природу Москвы вместе с нами</div>
-                    </div>
-                </div>
-
-                <div class="main-apps-item-text-mobile">Скачайте приложение и найдите самые интересные<br />природные объекты Москвы</div>
-                <div class="main-apps-mobile-mobile">
-                    <a href="#" class="main-apps-appstore-mobile"></a>
-                    <a href="#" class="main-apps-googleplay-mobile"></a>
-                </div>
 
             </div>
         </div>
