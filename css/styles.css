@@ -5,6 +5,7 @@
 
 body {min-width:480px; margin:0; padding:0; font:14px/20px "Open Sans", sans-serif; color:#222; background:#fafafa}
 body.bg-white {background:#fff}
+body.fixed {padding:120px 0 0 0}
 
 a {color:#8cc63e; outline:none; text-decoration:none}
 a:hover {text-decoration:underline}
@@ -145,32 +146,41 @@ h2+.articles {margin-top:0}
 .video-link:hover:after {background-position:left -105px}
 .video-link:active:after {background-position:left -210px}
 
-header {background:#fff}
-.header-main {background:none; position:relative; z-index:3; height:120px; padding:40px 0 0 0}
+header {background:#fff; height:120px}
+.header-main {background:none; position:relative; z-index:3; padding:40px 0 0 0}
 .header-inner {max-width:940px; padding:0 10px 32px 10px; margin:0 auto}
 .header-inner:after {content:"."; display:block; clear:both; visibility:hidden; height:0}
 
+.fixed header {background:#8cc63e; position:fixed; left:0; top:0; z-index:9; width:100%; height:60px; box-shadow:0 0 5px rgba(10, 10, 10, .48); padding:0}
+
 .logo {float:left; line-height:0; padding:31px 0 0 0}
+.fixed header .logo {width:133px; height:41px; background:url(../images/logo-fixed.png); overflow:hidden; padding:0; margin:8px 0 0 0}
+.fixed header .logo img {opacity:0}
 
 .menu-link {float:right; margin:49px 0 0 0; width:30px; height:20px; background:url(../images/menu-link.png)}
 .menu-link:hover {background-position:left -20px}
 .menu-link:active {background-position:left -40px}
 .header-main .menu-link {background-image:url(../images/menu-link-main.png)}
+.fixed header .menu-link {margin:19px 0 0 0; background-image:url(../images/menu-link-main.png)}
 
 .user-link {float:right; margin:44px 40px 0 0; width:30px; height:30px; background:url(../images/user-link.png)}
 .user-link:hover {background-position:left -30px}
 .user-link:active {background-position:left -60px}
 .header-main .user-link,
 .panel .user-link {background-image:url(../images/user-link-main.png)}
+.fixed header .user-link {margin-top:14px; background-image:url(../images/user-link-main.png)}
 
 .header-search {float:right; margin:44px 20px 0 0; position:relative}
+.fixed header .header-search {margin-top:14px}
 .header-search-mobile {display:none; width:30px; height:30px; background:url(../images/header-search-mobile.png)}
 .header-search-mobile:hover {background-position:left -30px}
 .header-search-mobile:active {background-position:left -60px}
 .header-main .header-search-mobile,
-.panel .header-search-mobile {background-position:left -90px}
+.panel .header-search-mobile,
+.fixed header .header-search-mobile {background-position:left -90px}
 .header-search form {margin:0; padding:0; width:176px; height:26px; border:2px solid #8cc63e; border-radius:15px}
 .header-main .header-search form,
+.fixed header .header-search form,
 .panel .header-search form {border-color:#fff}
 .header-search-input {float:left}
 .header-search-input input {vertical-align:top; margin:0; padding:8px 14px 4px 14px; outline:none; width:123px; height:14px; font:10px/14px P22UndergroundCYProBook, sans-serif; border:none; background:transparent; color:#000; -webkit-appearance:none}
@@ -181,6 +191,10 @@ header {background:#fff}
 .header-main .header-search-input input::-webkit-input-placeholder {color:#fff}
 .header-main .header-search-input input::-moz-placeholder {color:#fff}
 .header-main .header-search-input input:-ms-input-placeholder {color:#fff}
+.fixed header .header-search-input input {color:#fff}
+.fixed header .header-search-input input::-webkit-input-placeholder {color:#fff}
+.fixed header .header-search-input input::-moz-placeholder {color:#fff}
+.fixed header .header-search-input input:-ms-input-placeholder {color:#fff}
 .panel .header-search-input input {color:#fff}
 .panel .header-search-input input::-webkit-input-placeholder {color:#fff}
 .panel .header-search-input input::-moz-placeholder {color:#fff}
@@ -190,12 +204,14 @@ header {background:#fff}
 .header-search-submit input:hover {background-position:left -12px}
 .header-search-submit input:active {background-position:left -24px}
 .header-main .header-search-submit input {background-image:url(../images/header-search-main.png)}
+.fixed header .header-search-submit input {background-image:url(../images/header-search-main.png)}
 .panel .header-search-submit input {background-image:url(../images/header-search-main.png)}
 
 @media (max-width:960px) {
     .header-inner {padding-left:30px; padding-right:30px}
     .header-search form  {position:absolute; right:100%; margin-right:5px; top:0; display:none; background:#fff}
     .header-main .header-search form {background:rgba(0, 0, 0, .5)}
+    .fixed header .header-search form {background:none}
     .panel .header-search form {background:none}
     .header-search.open form {display:block; z-index:2}
     .header-search-mobile {display:block}
@@ -389,6 +405,7 @@ footer {background:#8cc63e}
 }
 
 .slider {height:620px; background:#000; position:relative; margin:-160px 0 0 0}
+.fixed .slider {margin:-120px 0 0 0}
 .slider-content {position:absolute; left:0; top:0; width:100%; height:100%; color:#fff}
 .slider-content a {color:#fff}
 .slider-content ul {position:absolute; left:0; top:0; width:100%; height:100%; margin:0; padding:0; list-style:none}
@@ -686,7 +703,7 @@ nav ul li a {color:#fff}
 .calendar-item-content {position:absolute; left:0; bottom:11px; width:100%; box-sizing:border-box; font-size:12px; line-height:12px; padding:0 5px 0 23px}
 .calendar-item-link {position:relative; padding:0 0 8px 0}
 .calendar-item-link:before {content:""; display:block; width:7px; height:7px; position:absolute; left:-13px; top:4px; background:#8cc63e}
-.calendar-item-link > a {color:#000}
+.calendar-item-link > a {color:#000; white-space:nowrap; display:block; width:100%; position:relative; overflow:hidden; text-overflow:ellipsis}
 .calendar-item-more {padding:0 0 8px 0}
 .calendar-item-more > a {color:#777c80}
 .calendar-item-add {display:none; position:absolute; left:0; top:0; width:100%; height:100%; padding:27px 0 0 0; border:2px solid #fff; box-sizing:border-box; background:#f9fcf5; text-transform:uppercase; font:12px/15px P22UndergroundCYProMedium, sans-serif; text-align:center; color:#000}

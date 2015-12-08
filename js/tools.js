@@ -925,4 +925,16 @@ var sliderTimer     = null;
 
     });
 
+    $(window).bind('load resize scroll', function() {
+        var topHeader = 44;
+        if ($('header').hasClass('header-main')) {
+            topHeader = 84;
+        }
+        if ($(window).scrollTop() > topHeader) {
+            $('body').addClass('fixed');
+        } else {
+            $('body').removeClass('fixed');
+        }
+    });
+
 })(jQuery);
