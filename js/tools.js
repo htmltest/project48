@@ -926,9 +926,9 @@ var sliderTimer     = null;
     });
 
     $(window).bind('load resize scroll', function() {
-        var topHeader = 44;
+        var topHeader = 30;
         if ($('header').hasClass('header-main')) {
-            topHeader = 84;
+            topHeader = 70;
         }
         if ($(window).scrollTop() > topHeader) {
             $('body').addClass('fixed');
