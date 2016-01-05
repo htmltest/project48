@@ -364,7 +364,6 @@ footer {background:#8cc63e}
 .main-instagram-text {text-align:center; text-transform:uppercase; font:15px/20px P22UndergroundCYProMedium, sans-serif; color:#000; padding:54px 0 48px 0}
 .main-instagram-text a {font-family:P22UndergroundCYProHeavy, sans-serif}
 
-
 @media (max-width:960px) {
     .main-instagram-inner {padding:0 30px}
 }
@@ -372,6 +371,24 @@ footer {background:#8cc63e}
 @media (max-width:480px) {
     .main-instagram-item {display:none}
     .main-instagram-item:first-child {display:block; width:100%}
+}
+
+.main-video {background:#fff}
+.main-video-title {color:#000; text-align:center; text-transform:uppercase; font:35px/35px P22UndergroundCYProDemi, sans-serif; padding:46px 0 0 0; position:relative}
+.main-video-title:after {content:""; display:inline-block; vertical-align:middle; width:40px; height:40px; background:url(../images/main-video-title.png); margin:-10px 0 0 15px}
+.main-video-list {font-size:0; line-height:0; letter-spacing:-1px; max-width:960px; margin:0 auto; padding:41px 0 0 0}
+.main-video-item {display:inline-block; width:33.33%; padding:0 10px; box-sizing:border-box; vertical-align:top}
+.main-video-item-photo img {width:100%}
+.main-video-item-photo a {display:block; position:relative}
+.main-video-item-photo a:after {content:""; display:block; width:80px; height:60px; position:absolute; left:50%; top:50%; margin:-30px 0 0 -40px; background:url(../images/main-video.png)}
+.main-video-item-title {text-transform:uppercase; font:15px/20px P22UndergroundCYProDemi, sans-serif; color:#000; letter-spacing:0; padding:22px 0 49px 0}
+
+@media (max-width:768px) {
+    .main-video-item {width:50%}
+}
+
+@media (max-width:480px) {
+    .main-video-item {width:100%}
 }
 
 .main-info {background:#fff}
