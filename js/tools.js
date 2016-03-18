@@ -82,6 +82,10 @@ var sliderTimer     = null;
         });
 
         $('.form-select select').chosen({disable_search: true, no_results_text: 'Нет результатов'});
+        $(window).resize(function() {
+            $('.form-select select').chosen('destroy');
+            $('.form-select select').chosen({disable_search: true, no_results_text: 'Нет результатов'});
+        });
 
         $('.form-input-date input').datepicker();
 
